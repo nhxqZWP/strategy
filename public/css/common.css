@@ -1,0 +1,233 @@
+#auditItinerary figure > img {
+    width:70%;
+}
+img {
+	max-width: 100%;
+}
+.line-group {
+	font-size: 0px;
+}
+.line-group >div {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	vertical-align: top;
+	font-size: 18px;
+}
+.inline-div {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	vertical-align: top
+}
+.popinfo {
+    position: relative;
+    z-index: 2
+}
+.width50 {
+	width: 50%;
+}
+.borderall {
+	border: 1px solid #e2e2e2 !important;
+}
+.text-center {
+	text-align: center;
+}
+.fontbigger {
+	font-size: 28px;
+}
+.padverfix10 {
+	padding: 10px 0px;
+}
+.colorwhite {
+	color: #fff;
+}
+.colorgray {
+	color: #666;
+}
+.fontbold {
+	font-weight: bold;
+}
+.fontbig {
+	font-size: 22px;
+}
+.text-left {
+	text-align: left;
+}
+.fontblack {
+	color: #666 !important;
+}
+div.messageform {
+	width: 100%;
+	min-width: 850px;
+}
+img.cover {
+	height: 150px;
+	width: 100%;
+}
+img.bigcover {
+	height: 250px;
+}
+img.avatar {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+}
+img.smallavatar {
+	width: 50px;
+	height: 50px;
+	border: none;
+}
+.padtopfix10 {
+	padding-top: 10px;
+}
+.margverfixm100 {
+	margin-top: -110px;
+}
+.padallfix10 {
+	padding: 10px;
+}
+.padbotfix15 {
+	padding-bottom: 15px;
+}
+.padtopfix15 {
+	padding-top: 15px;
+}
+.borderallradius {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+div.messageform input[type="text"], div.messageform select, div.messageform textarea {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	border: none;
+	background: none;
+	border: 1px solid #e2e2e2;
+}
+div.messageform .fullscreencommend textarea, div.messageform .actionfull textarea {
+	font-size: 15px;
+	line-height: 20px;
+}
+div.messageform .itemrecommend textarea {
+	font-size: 15px;
+	line-height: 20px;
+}
+div.messageform .textrecommend textarea {
+	font-size: 15px;
+	line-height: 20px;
+}
+div.messageform div.itemrecommend .linkstab >div:first-child {
+	width: 60%;
+}
+div.messageform div.itemrecommend .linkstab >div:first-child input {
+	width: 60%;
+}
+div.messageform div.itemrecommend .linkstab >div:last-child {
+	width: 40%;
+}
+div.messageform div.itemrecommend .linkstab >div:last-child input {
+	padding-right: 20px;
+}
+div.messageform div.actionrecommend .line-group >div:first-child{
+	width: 25%;
+}
+div.messageform div.actionrecommend .line-group >div:first-child img{
+	height: 88px;
+}
+div.messageform div.actionrecommend .line-group >div:last-child {
+	width: 75%;
+}
+div.messageform div.actionrecommend .line-group >div:last-child textarea{
+	height: 88px;
+	font-size: 18px;
+	line-height: 22px;
+}
+div.messageform textarea {
+	height: 60px;
+	line-height: 1em;
+	padding-top: 10px;
+	resize: none;
+}
+div.messageform select {
+	border: 1px solid #e2e2e2;
+	background: url(/images/down.png) no-repeat center right 10px;
+	background-size: 24px auto;
+}
+div.messageform >div.content >div {
+	padding: 10px 0px;
+}
+div.messageform >div.content input[type="radio"] {
+	margin-right: 5px;
+}
+div.messageform >div.content div.mtype >span {
+	margin-right: 15px;
+}
+div.messageform >div.content div.message {
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	width: 420px;
+	background-color: #e2e2e2;
+	padding: 20px;
+	height: 600px;
+}
+div.messageform >div.content div.message input[type="text"] {
+	border: none;
+}
+div.messageform >div.content div.message textarea {
+	border: none;
+}
+div.messageform >div.content div.message figure {
+	position: relative;
+	background-color: #fff;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	overflow: hidden;
+}
+div.messageform >div.content div.configdiv {
+	width: 340px;
+	margin-left: 40px;
+	font-size: 14px;
+}
+div.messageform >div.content div.configdiv >div {
+	padding: 10px 0px;
+}
+button.sendbtn {
+	width: 100px;
+	height: 100px;
+	font-size: 30px;
+	border: none;
+	background-color: #3498db;
+	border-radius: 50px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	line-height: 30px;
+	color: #fff;
+}
+div.linkstab {
+	border-top: 1px solid #e2e2e2;
+	background: url(/images/iconfont-right.png) no-repeat center right;
+	background-size: 22px auto;
+}
+div.linkstab input[type="text"] {
+	color: #3498db;
+	font-weight: bold;
+}
+.locked {
+	opacity: 0.5;
+}
+.hidden {
+	display: none;
+}
+.fontnormal {
+	font-size: 14px !important;
+}
