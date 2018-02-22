@@ -9,7 +9,7 @@ class GateIoService
     private static $trxUsdt = 'strategy:coin_to_coin:trx_usdt';
     const PRICE_DEPTH_NO = 75; // gate.io 100
     const TRADE_FEE = 0.002; // gate.io
-    const PROFIT_COIN1_PERCENT = 0.02; // 创建订单时盈利比例 针对coin1
+    const PROFIT_COIN1_PERCENT = 0.02; // 创建订单时盈利比例
 
     /**
      * 获取订单参数  [ decimal_places  min_amount  fee ]
@@ -105,15 +105,15 @@ class GateIoService
         // 卖单从低到高 买单从高到低排序
         array_multisort(array_column($depth['asks'],0),SORT_ASC,$depth['asks']);
 //        dd($depth);
-//        $coin1Total = $pairBalance['coin1_total'] * 1;  // 满仓
-        $coin1Total = 5500;
-//        $coin2Avail = $pairBalance['coin2_total'] * 1;  // 满仓
-        $coin2Total = 660;
+        $coin1Total = $pairBalance['coin1_total'] * 1;  // 满仓
+        $coin2Total = $pairBalance['coin2_total'] * 1;  // 满仓
         $currCoin1 = $coin1Total + $coin2Total / $lastPrice;
         // 计算买卖价
         $priceDepth = self::PRICE_DEPTH_NO;
-        $amountBids = 0;
-        $amountAsks = 0;
+        $coin1Percent = Redis::get('coin1_percent:'.$pair);
+        if (is_null($coin1Percent)) $coin1Percent = 0.02;
+//        $amountBids = 0;
+//        $amountAsks = 0;
         for ($i = 0; $i < $priceDepth; $i++) {
             if (!isset($depth['asks'][$i]) || !isset($depth['bids'][$i])) break;
 //            $amountBids += $depth['asks'][$i][1];
@@ -123,7 +123,7 @@ class GateIoService
             $resCoin1 = $sellPrice*$coin1Total*(1-self::TRADE_FEE)/$lastPrice + $coin2Total/$buyPrice*(1-self::TRADE_FEE);
 //            echo $resCoin1-$currCoin1 .' ' . $amountAsks . ' '. $amountBids . '<br>';
 //            echo $resCoin1-$currCoin1 .' ' . $sellPrice . ' '. $buyPrice . '<br>';
-            if ($resCoin1 > $currCoin1 * (1 + self::PROFIT_COIN1_PERCENT)) {
+            if ($resCoin1 > $currCoin1 * (1 + $coin1Percent)) {
 //                dd($resCoin1. ' '.$currCoin1. ' ' . $i );
                 return [
                     'sell_price' => $sellPrice,

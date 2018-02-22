@@ -64,8 +64,8 @@ class BuyGoUpService
             $cancelSell = GateIo::cancel_all_orders(self::CANCEL_ALL_SELL, $pair)['result'];
         }
 
-        $sellPrice = 100;
-        $buyPrice = 0.001;
+//        $sellPrice = 100;
+//        $buyPrice = 0.001;
         // 下卖单 max 1000000 USDT
         $orderSell = GateIo::sell($pair, $sellPrice, $coin1Total);
         if ($orderSell['result'] == 'false' || $orderSell['result'] == false) {

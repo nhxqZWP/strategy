@@ -2,19 +2,55 @@
 
 @section('main_content')
     <section class="content">
+        {{--<div class="row">--}}
+            {{--<div id="process-chart" style="width: 95%;height:400px;"></div>--}}
+        {{--</div>--}}
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">gate.io GTC/USDT</h3>
-                        <span class="col-sm-offset-1">钱包余额 GTC:{{$wallet['coin1_total']}} USDT:{{$wallet['coin2_total']}}</span>
-                        <span class="col-sm-offset-1">脚本运行状态:
-                            @if($open == 2) <font color="red">close</font> <a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>
-                            @else <font color="green">run</font> <a href="/switch?pair={{$pair}}&status=2" class="btn btn-warning btn-xs">关闭</a> @endif
+                        <span class="col-sm-offset-1">
+                            钱包余额 GTC:{{$wallet['coin1_total']}} &nbsp;
+                            USDT:{{$wallet['coin2_total']}} &nbsp;
+                            最新交易价:{{$lastPrice}} &nbsp;
+                            现价总值:{{$walletTotal}}
                         </span>
+                        {{--<span class="col-sm-offset-1">脚本运行状态:--}}
+                            {{--@if($open == 2) <font color="red">close</font> <a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>--}}
+                            {{--@else <font color="green">run</font> <a href="/switch?pair={{$pair}}&status=2" class="btn btn-warning btn-xs">关闭</a> @endif--}}
+                        {{--</span>--}}
                     </div>
                     @include('layouts.form_errors')
                     <div class="box-body">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>脚本运行状态:
+                                        @if($open == 2) <font color="red">close</font> &nbsp;<a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>
+                                        @else <font color="green">run</font> &nbsp;<a href="/switch?pair={{$pair}}&status=2" class="btn btn-warning btn-xs">关闭</a> @endif
+                                    </td>
+                                    <td width="30px"> </td>
+                                    <td> 最长挂单时间:</td>
+                                    <td>
+                                        <form action="/timelimit" method="post">
+                                            <input type="text" name="limit" value="{{$timeLimit}}" size="10">s
+                                            <input type="submit" name="提交">
+                                        </form>
+                                    </td>
+                                    <td width="30px"> </td>
+                                    <td> 每笔利润率:</td>
+                                    <td>
+                                        <form action="/getpercent" method="post">
+                                            <input type="text" name="percent" value="{{$coinPercent}}" size="10">
+                                            <input type="hidden" name="pair" value="{{$pair}}">
+                                            <input type="submit" name="提交">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
                         <div>当前挂单列表</div>
                         <div class="dataTables_wrapper form-inline dt-bootstrap">
                             <table class="table table-bordered">
@@ -40,7 +76,7 @@
                                             <td>{{date('Y-m-d H:i:s', $oo['timestamp'])}}</td>
                                             <td>{{$oo['status']}}</td>
                                             <td>
-                                                <a href=""
+                                                <a href="/cancel/order?number={{$oo['orderNumber']}}"
                                                    class="btn btn-warning btn-xs">取消</a>
                                             </td>
                                         </tr>
@@ -60,7 +96,6 @@
                                     <th>数量</th>
                                     <th>总计</th>
                                     <th>成交时间</th>
-                                    <th>操作</th>
                                 </tr>
                                 @if(!empty($tradeHistory['trades']))
                                     @foreach($tradeHistory['trades'] as $th)
@@ -109,5 +144,8 @@
             var modal = $(this);
             modal.find('.modal-footer a').attr('href', '/product/delete?id=' + id);
         })
+    </script>
+    <script language="JavaScript">
+        setTimeout(function(){location.reload()},60000); //指定60秒刷新一次
     </script>
 @endsection
