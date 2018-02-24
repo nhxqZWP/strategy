@@ -31,6 +31,13 @@ class Kernel extends ConsoleKernel
                 sleep(5);
             }
         })->cron('* * * * *');
+
+        $schedule->call(function () {
+            for ($i = 0; $i < 10; $i++) {
+                sleep(6);
+                ConsoleService::runShotLine2();
+            }
+        })->cron('* * * * *');
         // everyTenMinutes everyThirtyMinutes hourly
     }
 }

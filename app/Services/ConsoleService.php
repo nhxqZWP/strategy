@@ -45,7 +45,22 @@ class ConsoleService
 //        if (!$openOrderExist || is_null($runTimeLimit)) {
         $res = ShotLineService::BinanceShotLine2($pair);
 //        if (!$res['result']) {
-            Log::debug($res['message']);
+            Log::debug('1:'.$res['message']);
+//        }
+    }
+
+    public static function runShotLine2()
+    {
+        $pair = 'ETH_USDT';
+        // 运行总开关
+        $open = Redis::get('switch_'.$pair);
+        if (is_null($open) || $open == 2) return false;
+        // 如果挂单都成交或者到了指定时间
+//        $runTimeLimit = Redis::get(self::GTC_RUN_TIME_LIMIT_KEY);
+//        if (!$openOrderExist || is_null($runTimeLimit)) {
+        $res = ShotLineService::BinanceShotLine2Two($pair);
+//        if (!$res['result']) {
+        Log::debug('2:'.$res['message']);
 //        }
     }
 }
