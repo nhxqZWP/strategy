@@ -20,6 +20,7 @@ Route::group(['middleware'=>'rbac'], function() {
     Route::get('/cancel/order', 'StrategyController@cancelOneOrder');
     Route::post('/timelimit', 'StrategyController@timeLimit');
     Route::post('/getpercent', 'StrategyController@getpercent');
+    Route::post('/quantity', 'StrategyController@postQuantity');
 
     Route::get('/gtc_usdt', 'StrategyController@getGateIoOneCoin');
     Route::get('/eth_usdt', 'StrategyController@getBinanceOneCoin');

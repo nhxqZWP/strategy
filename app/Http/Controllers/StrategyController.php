@@ -89,6 +89,14 @@ class StrategyController extends Controller
         return redirect()->back()->with('message', '修改成功');
     }
 
+    public function postQuantity(Request $request)
+    {
+        $quantity = $request->get('quantity', 0.1);
+        $pair = $request->get('pair');
+        Redis::set('binance:buy:quantity_'.$pair, $quantity);
+        return redirect()->back()->with('message', '修改成功');
+    }
+
     public function getBinanceOneCoin(Request $request)
     {
         $pair = $request->get('pair');
@@ -110,6 +118,9 @@ class StrategyController extends Controller
         // 最长挂单时间
         $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
         if (is_null($timeLimit)) $timeLimit = 30;
+        // 买卖单数量
+        $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+        if (is_null($quantity)) $quantity = 0.1;  // 买卖1个eth
         // 每笔利润率
 //        $coin1Percent = Redis::get('coin1_percent:'.$pair);
 //        if (is_null($coin1Percent)) $coin1Percent = 0.02;
@@ -121,6 +132,7 @@ class StrategyController extends Controller
             'coin1' => $coin1,
             'coin2' => $coin2,
             'timeLimit' => $timeLimit,
+            'quantity' => $quantity
 //            'coinPercent' => $coin1Percent,
         ];
         return view('binance.coin_analysis_show', $data);

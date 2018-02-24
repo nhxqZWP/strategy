@@ -37,14 +37,14 @@
                                         </form>
                                     </td>
                                     <td width="30px"> </td>
-                                    {{--<td> 每笔利润率:</td>--}}
-                                    {{--<td>--}}
-                                        {{--<form action="/getpercent" method="post">--}}
-                                            {{--<input type="text" name="percent" value="{{$coinPercent}}" size="10">--}}
-                                            {{--<input type="hidden" name="pair" value="{{$pair}}">--}}
-                                            {{--<input type="submit" name="提交">--}}
-                                        {{--</form>--}}
-                                    {{--</td>--}}
+                                    <td> 每笔买卖ETH量:</td>
+                                    <td>
+                                        <form action="/quantity" method="post">
+                                            <input type="text" name="quantity" value="{{$quantity}}" size="10">
+                                            <input type="hidden" name="pair" value="{{$pair}}">
+                                            <input type="submit" name="提交">
+                                        </form>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
