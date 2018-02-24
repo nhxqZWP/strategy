@@ -20,13 +20,13 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>GTC/USDT</h3>
+                        <h3>ETH/USDT</h3>
                         <p>{{$wallet1['coin1_total']}}/{{$wallet1['coin2_total']}}</p>
                     </div>
                     <div class="icon">
                         {{--<i class="ion ion-person-add"></i>--}}
                     </div>
-                    <a href="/gtc_usdt?pair=gtc_usdt" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/eth_usdt?pair=ETH_USDT" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 

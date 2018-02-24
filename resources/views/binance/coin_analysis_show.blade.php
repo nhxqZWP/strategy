@@ -9,12 +9,10 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">gate.io GTC/USDT</h3>
+                        <h3 class="box-title">Binance ETH/USDT</h3>
                         <span class="col-sm-offset-1">
-                            钱包余额 GTC:{{$wallet['coin1_total']}} &nbsp;
-                            USDT:{{$wallet['coin2_total']}} &nbsp;
-                            最新交易价:{{$lastPrice}} &nbsp;
-                            现价总值:{{$walletTotal}}
+                            钱包余额 ETH:{{$coin1['available']}}({{$coin1['onOrder']}}) &nbsp;
+                            USDT:{{$coin2['available']}}({{$coin2['onOrder']}}) &nbsp;
                         </span>
                         {{--<span class="col-sm-offset-1">脚本运行状态:--}}
                             {{--@if($open == 2) <font color="red">close</font> <a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>--}}
@@ -31,22 +29,22 @@
                                         @else <font color="green">run</font> &nbsp;<a href="/switch?pair={{$pair}}&status=2" class="btn btn-warning btn-xs">关闭</a> @endif
                                     </td>
                                     <td width="30px"> </td>
-                                    <td> 最长挂单时间:</td>
+                                    <td> 最长挂买单时间:</td>
                                     <td>
-                                        <form action="/timelimit" method="post">
+                                        <form action="/timelimit?plat=binance" method="post">
                                             <input type="text" name="limit" value="{{$timeLimit}}" size="10">s
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
                                     <td width="30px"> </td>
-                                    <td> 每笔利润率:</td>
-                                    <td>
-                                        <form action="/getpercent" method="post">
-                                            <input type="text" name="percent" value="{{$coinPercent}}" size="10">
-                                            <input type="hidden" name="pair" value="{{$pair}}">
-                                            <input type="submit" name="提交">
-                                        </form>
-                                    </td>
+                                    {{--<td> 每笔利润率:</td>--}}
+                                    {{--<td>--}}
+                                        {{--<form action="/getpercent" method="post">--}}
+                                            {{--<input type="text" name="percent" value="{{$coinPercent}}" size="10">--}}
+                                            {{--<input type="hidden" name="pair" value="{{$pair}}">--}}
+                                            {{--<input type="submit" name="提交">--}}
+                                        {{--</form>--}}
+                                    {{--</td>--}}
                                 </tr>
                             </table>
                         </div>
@@ -65,18 +63,18 @@
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
-                                @if(!empty($openOrders['orders']))
-                                    @foreach($openOrders['orders'] as $oo)
+                                @if(!empty($openOrders))
+                                    @foreach($openOrders as $oo)
                                         <tr>
-                                            <td>{{$oo['orderNumber']}}</td>
-                                            <td>{{$oo['type']}}</td>
-                                            <td>{{$oo['initialRate']}} usdt</td>
-                                            <td>{{$oo['initialAmount']}}</td>
-                                            <td>{{$oo['initialAmount']}} usdt</td>
-                                            <td>{{date('Y-m-d H:i:s', $oo['timestamp'])}}</td>
+                                            <td>{{$oo['orderId']}}</td>
+                                            <td>{{$oo['side']}}</td>
+                                            <td>{{$oo['price']}} usdt</td>
+                                            <td>{{$oo['origQty']}}</td>
+                                            <td>{{$oo['price'] * $oo['origQty']}} usdt</td>
+                                            <td>{{date('Y-m-d H:i:s', (int)substr($oo['time'],0,10))}}</td>
                                             <td>{{$oo['status']}}</td>
                                             <td>
-                                                <a href="/cancel/order?number={{$oo['orderNumber']}}"
+                                                <a href="/cancel/order?number={{$oo['orderId']}}&plat=binance&pair={{$pair}}"
                                                    class="btn btn-warning btn-xs">取消</a>
                                             </td>
                                         </tr>
@@ -95,17 +93,24 @@
                                     <th>价格</th>
                                     <th>数量</th>
                                     <th>总计</th>
+                                    <th>手续费</th>
                                     <th>成交时间</th>
                                 </tr>
-                                @if(!empty($tradeHistory['trades']))
-                                    @foreach($tradeHistory['trades'] as $th)
+                                @if(!empty($tradeHistory))
+                                    @foreach($tradeHistory as $th)
                                         <tr>
-                                            <td>{{$th['tradeID']}}</td>
-                                            <td>{{$th['type']}}</td>
-                                            <td>{{$th['rate']}} usdt</td>
-                                            <td>{{$th['amount']}}</td>
-                                            <td>{{$th['rate'] * $th['amount']}} usdt</td>
-                                            <td>{{date('Y-m-d H:i:s', $th['time_unix'])}}</td>
+                                            <td>{{$th['orderId']}}</td>
+                                            <td>
+                                                @if($th['isBuyer']) 买单
+                                                    @elseif($th['isMaker']) 卖单
+                                                    @else 市价单
+                                                    @endif
+                                            </td>
+                                            <td>{{$th['price']}} usdt</td>
+                                            <td>{{$th['qty']}}</td>
+                                            <td>{{$th['price'] * $th['qty']}} usdt</td>
+                                            <td>{{$th['commission']}} {{$th['commissionAsset']}}</td>
+                                            <td>{{date('Y-m-d H:i:s', (int)substr($th['time'],0,10))}}</td>
                                         </tr>
                                     @endforeach
                                 @endif

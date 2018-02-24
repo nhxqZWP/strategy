@@ -111,7 +111,7 @@ class GateIoService
         // 计算买卖价
         $priceDepth = self::PRICE_DEPTH_NO;
         $coin1Percent = Redis::get('coin1_percent:'.$pair);
-        if (is_null($coin1Percent)) $coin1Percent = 0.02;
+        if (is_null($coin1Percent)) $coin1Percent = 0.01;
 //        $amountBids = 0;
 //        $amountAsks = 0;
         for ($i = 0; $i < $priceDepth; $i++) {

@@ -9,6 +9,16 @@
             <li class="treeview active">
                 <a href="#">
                     <i class="fa fa-table"></i>
+                    <span>Binance策略</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/eth_usdt?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview active">
+                <a href="#">
+                    <i class="fa fa-table"></i>
                     <span>Gate.io策略</span>
                 </a>
                 <ul class="treeview-menu">

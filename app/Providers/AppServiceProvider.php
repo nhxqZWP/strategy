@@ -13,7 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton("Binance", function(){
+            $key = config('platform.binance.key');
+            $secret = config('platform.binance.secret');
+            $api = new \Binance\API($key,$secret);
+            return $api;
+        });
     }
 
     /**

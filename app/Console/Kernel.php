@@ -26,8 +26,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            ConsoleService::runShotLine();
-        })->everyMinute();
+            for ($i = 0; $i < 12; $i++) {
+                ConsoleService::runShotLine();
+                sleep(5);
+            }
+        })->cron('* * * * *');
         // everyTenMinutes everyThirtyMinutes hourly
     }
 }

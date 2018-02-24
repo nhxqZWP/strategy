@@ -22,5 +22,8 @@ Route::group(['middleware'=>'rbac'], function() {
     Route::post('/getpercent', 'StrategyController@getpercent');
 
     Route::get('/gtc_usdt', 'StrategyController@getGateIoOneCoin');
+    Route::get('/eth_usdt', 'StrategyController@getBinanceOneCoin');
 });
+
+Route::get('test', 'TestController@testLeeksReaper');
 

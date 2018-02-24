@@ -59,14 +59,25 @@ class StrategyController extends Controller
     {
         $pair = $request->get('pair');
         $number = $request->get('number');
-        GateIo::cancel_order($number);
+        $plat = $request->get('plat','binance');
+        $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+        if ($plat == 'binance') {
+            $api = app('Binance');
+            $api->cancel($ticker, $number);
+            Redis::set('binance:buy:mark_'.$pair.'1', 2);
+        }
         return redirect()->back();
     }
 
     public function timeLimit(Request $request)
     {
-        $limit = $request->get('limit', 60 * 20);
-        Redis::set(ConsoleService::GTC_RUN_TIME_LIMIT_VALUE, $limit);
+        $limit = $request->get('limit', 30);
+        $plat = $request->get('plat','binance');
+        if ($plat == 'binance') {
+            Redis::set(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE, $limit);
+        } else {
+            Redis::set(ConsoleService::GTC_RUN_TIME_LIMIT_VALUE, $limit);
+        }
         return redirect()->back()->with('message', '修改成功');
     }
 
@@ -76,6 +87,43 @@ class StrategyController extends Controller
         $pair = $request->get('pair');
         Redis::set('coin1_percent:'.$pair, $percent);
         return redirect()->back()->with('message', '修改成功');
+    }
+
+    public function getBinanceOneCoin(Request $request)
+    {
+        $pair = $request->get('pair');
+        if (empty($pair)) return redirect()->back()->withInput()->with('error', '没有选择交易对');
+
+        // 运行状态
+        $open = Redis::get('switch_' . $pair);
+        if (is_null($open) || $open == 2) $open = 2;
+        $api = app('Binance');
+        $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+        // 获取当前挂单列表
+        $openOrders = $api->openOrders($ticker);
+        // 获取24内成交记录
+        $tradeHistory = array_reverse($api->history($ticker, 20));
+        // 此交易对钱包余额
+        $wallet = $api->balances();
+        $coin1 = $wallet[explode('_',$pair)[0]];
+        $coin2 = $wallet[explode('_',$pair)[1]];
+        // 最长挂单时间
+        $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
+        if (is_null($timeLimit)) $timeLimit = 30;
+        // 每笔利润率
+//        $coin1Percent = Redis::get('coin1_percent:'.$pair);
+//        if (is_null($coin1Percent)) $coin1Percent = 0.02;
+        $data = [
+            'openOrders' => $openOrders,
+            'tradeHistory' => $tradeHistory,
+            'open' => $open,
+            'pair' => $pair,
+            'coin1' => $coin1,
+            'coin2' => $coin2,
+            'timeLimit' => $timeLimit,
+//            'coinPercent' => $coin1Percent,
+        ];
+        return view('binance.coin_analysis_show', $data);
     }
 
 //    public function chart()
@@ -117,4 +165,5 @@ class StrategyController extends Controller
 //            'y_axis' => json_encode(array_values($days)),
 //        ];
 //    }
+
 }

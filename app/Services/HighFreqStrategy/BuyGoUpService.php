@@ -29,7 +29,7 @@ class BuyGoUpService
     }
 
     const START_INIT_GTC = 5500;
-    const START_INIT_USDT = 670;
+    const START_INIT_USDT = 507;
     const CANCEL_ALL_SELL = 0;
     const CANCEL_ALL_BUY = 1;
 
@@ -64,25 +64,25 @@ class BuyGoUpService
             $cancelSell = GateIo::cancel_all_orders(self::CANCEL_ALL_SELL, $pair)['result'];
         }
 
-//        $sellPrice = 100;
-//        $buyPrice = 0.001;
         // 下卖单 max 1000000 USDT
         $orderSell = GateIo::sell($pair, $sellPrice, $coin1Total);
         if ($orderSell['result'] == 'false' || $orderSell['result'] == false) {
-//            Log::debug(__FILE__.' '.__LINE__.' '.$orderSell['message']);
             goto end;
         }
 
-        // 下买单 min 10USDT todo 测试边缘条件
+        // 下买单 min 10USDT
         $orderBuy = GateIo::buy($pair, $buyPrice, $coin2Total / $lastPrice);
-        if ($orderBuy['result'] == 'false' || $orderBuy['result'] == false) {
-//            Log::debug(__FILE__.' '.__LINE__.' '.$orderBuy['message']);
+        if ($orderBuy['result'] == 'false') {
             $cancelSell = false;
             while($cancelSell != true) {
                 $cancelSell = GateIo::cancel_all_orders(self::CANCEL_ALL_SELL, $pair)['result'];
             }
             return ['result' => false, 'message' => $orderBuy['message'], 'type' => 'buy_order'];
         }
+
+        // 记录挂单单号
+        Redis::set('gate:order_number:sell_' . $pair, $orderSell['orderNumber']);
+        Redis::set('gate:order_number:buy_' . $pair, $orderBuy['orderNumber']);
 
         // 设定此次挂单时间
         $timeLimit = Redis::get(ConsoleService::GTC_RUN_TIME_LIMIT_VALUE);
