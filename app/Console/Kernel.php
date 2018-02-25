@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        ini_set('memory_limit', '500M'); //内存限制
         $schedule->call(function () {
             for ($i = 0; $i < 12; $i++) {
                 ConsoleService::runShotLine();

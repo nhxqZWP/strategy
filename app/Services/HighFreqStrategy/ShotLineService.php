@@ -80,6 +80,8 @@ class ShotLineService
 
     public static function BinanceShotLine2($pair)
     {
+        ini_set('memory_limit', '500M'); //内存限制
+        set_time_limit(0);
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
@@ -154,6 +156,8 @@ class ShotLineService
 
     public static function BinanceShotLine2Two($pair)
     {
+        ini_set('memory_limit', '500M'); //内存限制
+        set_time_limit(0);
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
@@ -228,6 +232,8 @@ class ShotLineService
 
     public static function BinanceShotLine2Three($pair)
     {
+        ini_set('memory_limit', '500M'); //内存限制
+        set_time_limit(0);
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
@@ -302,6 +308,8 @@ class ShotLineService
 
     public static function BinanceShotLine2Four($pair)
     {
+        ini_set('memory_limit', '500M'); //内存限制
+        set_time_limit(0);
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
@@ -376,7 +384,7 @@ class ShotLineService
 
     public static function cancelSellOrder($pair)
     {
-        Log::debug('test2');
+        Log::debug('not init all order');
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
         $sellNumber1 = Redis::get('binance:sell:number_' . $pair . '1');
