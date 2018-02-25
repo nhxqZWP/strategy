@@ -10,9 +10,11 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Binance ETH/USDT</h3>
-                        <span class="col-sm-offset-1">
+                        <span class="">
                             钱包余额 ETH:{{$coin1['available']}}({{$coin1['onOrder']}}) &nbsp;
-                            USDT:{{$coin2['available']}}({{$coin2['onOrder']}}) &nbsp;
+                            USDT:{{$coin2['available']}}({{$coin2['onOrder']}})&nbsp;
+                            总USDT估值：{{intval(($coin1['available']+$coin1['onOrder'])*$lastPrice+$coin2['available']+$coin2['onOrder'])}}USDT
+                            &nbsp;&nbsp;{{intval(($coin1['available']+$coin1['onOrder'])*$lastPrice+$coin2['available']+$coin2['onOrder'])*$usdtCny}}CNY
                         </span>
                         {{--<span class="col-sm-offset-1">脚本运行状态:--}}
                             {{--@if($open == 2) <font color="red">close</font> <a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>--}}

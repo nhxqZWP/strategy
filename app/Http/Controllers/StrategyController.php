@@ -147,6 +147,10 @@ class StrategyController extends Controller
         $wallet = $api->balances();
         $coin1 = $wallet[explode('_',$pair)[0]];
         $coin2 = $wallet[explode('_',$pair)[1]];
+        // 当前币价
+        $lastPrice = $api->prices()[$ticker];
+        // usdt_cny
+        $usdtCny = GateIo::get_ticker('usdt_cny');
         // 最长挂单时间
         $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
         if (is_null($timeLimit)) $timeLimit = 30;
@@ -179,7 +183,9 @@ class StrategyController extends Controller
             'quantity' => $quantity,
             'param' => $param,
             'profit' => $profit,
-            'sellCancelTime' => $sellCancel
+            'sellCancelTime' => $sellCancel,
+            'lastPrice' => $lastPrice,
+            'usdtCny' => $usdtCny['last']
         ];
         return view('binance.coin_analysis_show', $data);
     }
