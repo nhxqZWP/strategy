@@ -64,7 +64,7 @@ class Kernel extends ConsoleKernel
         if (is_null($limitTime)) $limitTime = 6;
         $schedule->call(function () {
                 ShotLineService::cancelSellOrder('ETH_USDT');
-        })->cron('* */'.$limitTime.' * * *');
+        })->cron('0 */'.$limitTime.' * * *');
         // everyTenMinutes everyThirtyMinutes hourly
     }
 }
