@@ -4,6 +4,7 @@ namespace App\Services\HighFreqStrategy;
 
 use App\Services\ConsoleService;
 use App\Services\TradePlatform\BinanceService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 
 class ShotLineService
@@ -133,6 +134,7 @@ class ShotLineService
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值(净利润)
                     if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
                     $sellPrice = Redis::get('binance:buy:price_'.$pair.'1') * (1+0.001) + $sellDepthNumber;
+                    $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -206,6 +208,7 @@ class ShotLineService
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
                     if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
                     $sellPrice = Redis::get('binance:buy:price_'.$pair.'2') * (1+0.001) + $sellDepthNumber;
+                    $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -279,6 +282,7 @@ class ShotLineService
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
                     if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
                     $sellPrice = Redis::get('binance:buy:price_'.$pair.'3') * (1+0.001) + $sellDepthNumber;
+                    $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -352,6 +356,7 @@ class ShotLineService
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
                     if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
                     $sellPrice = Redis::get('binance:buy:price_'.$pair.'4') * (1+0.001) + $sellDepthNumber;
+                    $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
