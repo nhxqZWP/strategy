@@ -423,13 +423,30 @@ class ShotLineService
         if (!is_null($sellNumber1) && $sellStatus1['status'] == 'NEW' && $sellStatus2['status'] == 'NEW' && $sellStatus3['status'] == 'NEW' && $sellStatus4['status'] == 'NEW') {
             // 四组卖单全未成交
             $status = Redis::get('switch_'.$pair);
-            $limitTime = Redis::get('binance:sell:cancel_limit_time');
-            if (is_null($status)) {
+            if (is_null($status) || $status == 2) {
                 return false;
             } else {
-                Redis::flushdb();
-                Redis::set('switch_'.$pair, $status);
-                Redis::set('binance:sell:cancel_limit_time', $limitTime);
+//                Redis::flushdb();
+                Redis::del("binance:buy:number_ETH_USDT1");
+                Redis::del("binance:buy:price_ETH_USDT1");
+                Redis::del("binance:sell:number_ETH_USDT1");
+                Redis::del("binance:buy:mark_ETH_USDT1");
+
+                Redis::del("binance:buy:number_ETH_USDT2");
+                Redis::del("binance:buy:price_ETH_USDT2");
+                Redis::del("binance:sell:number_ETH_USDT2");
+                Redis::del("binance:buy:mark_ETH_USDT2");
+
+                Redis::del("binance:buy:number_ETH_USDT3");
+                Redis::del("binance:buy:price_ETH_USDT3");
+                Redis::del("binance:sell:number_ETH_USDT3");
+                Redis::del("binance:buy:mark_ETH_USDT3");
+
+                Redis::del("binance:buy:number_ETH_USDT4");
+                Redis::del("binance:buy:price_ETH_USDT4");
+                Redis::del("binance:sell:number_ETH_USDT4");
+                Redis::del("binance:buy:mark_ETH_USDT4");
+
                 Log::debug('init all order');
                 return true;
             }
