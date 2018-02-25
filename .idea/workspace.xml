@@ -4,7 +4,7 @@
     <list default="true" id="7835dce0-5645-45db-9c3a-e858deab460f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" afterPath="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php" afterPath="$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,26 +35,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coin_analysis_show.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="coin_analysis_show.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+            <state relative-caret-position="89">
+              <caret line="62" column="61" lean-forward="false" selection-start-line="62" selection-start-column="61" selection-end-line="62" selection-end-column="61" />
               <folding>
                 <element signature="e#655#661#0#HTML" expanded="true" />
                 <element signature="e#831#837#0#HTML" expanded="true" />
                 <element signature="e#837#843#0#HTML" expanded="true" />
-                <marker date="1519555399942" expanded="true" signature="11704:11961" ph="..." />
-                <marker date="1519555399942" expanded="true" signature="11739:11960" ph="..." />
+                <marker date="1519558304866" expanded="true" signature="11704:11961" ph="..." />
+                <marker date="1519558304866" expanded="true" signature="11739:11960" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShotLineService.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShotLineService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
+            <state relative-caret-position="183">
               <caret line="415" column="12" lean-forward="false" selection-start-line="415" selection-start-column="12" selection-end-line="415" selection-end-column="12" />
               <folding>
                 <element signature="e#49#81#0#PHP" expanded="true" />
@@ -163,9 +163,9 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Services/LockService.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StrategyController.php" />
-        <option value="$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
+        <option value="$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php" />
       </list>
     </option>
   </component>
@@ -726,11 +726,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519555714047</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="debug partitly finish buy order">
+      <created>1519557674270</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1519557674271</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94745000" />
+    <option name="totallyTimeSpent" value="95229000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -777,7 +784,8 @@
     <MESSAGE value="for times" />
     <MESSAGE value="init all debug" />
     <MESSAGE value="add balance analysis" />
-    <option name="LAST_COMMIT_MESSAGE" value="add balance analysis" />
+    <MESSAGE value="debug partitly finish buy order" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug partitly finish buy order" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1136,20 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding>
-            <element signature="e#655#661#0#HTML" expanded="true" />
-            <element signature="e#831#837#0#HTML" expanded="true" />
-            <element signature="e#837#843#0#HTML" expanded="true" />
-            <marker date="1519555399942" expanded="true" signature="11704:11961" ph="..." />
-            <marker date="1519555399942" expanded="true" signature="11739:11960" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1083">
@@ -1162,10 +1156,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
+        <state relative-caret-position="183">
           <caret line="415" column="12" lean-forward="false" selection-start-line="415" selection-start-column="12" selection-end-line="415" selection-end-column="12" />
           <folding>
             <element signature="e#49#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="62" column="61" lean-forward="false" selection-start-line="62" selection-start-column="61" selection-end-line="62" selection-end-column="61" />
+          <folding>
+            <element signature="e#655#661#0#HTML" expanded="true" />
+            <element signature="e#831#837#0#HTML" expanded="true" />
+            <element signature="e#837#843#0#HTML" expanded="true" />
+            <marker date="1519558304866" expanded="true" signature="11704:11961" ph="..." />
+            <marker date="1519558304866" expanded="true" signature="11739:11960" ph="..." />
           </folding>
         </state>
       </provider>

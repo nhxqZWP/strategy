@@ -60,7 +60,7 @@
                         </div>
                         <div class="box-body">
                             <form action="/binance/params" method="post">
-                                <table border="1px" width="800px">
+                                <table border="1px" width="900px">
                                     <tr>
                                         <th></th>
                                         <th class="text-center">第一组</th>
