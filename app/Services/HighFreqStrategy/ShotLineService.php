@@ -376,6 +376,7 @@ class ShotLineService
 
     public static function cancelSellOrder($pair)
     {
+        Log::debug('test2');
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
         $sellNumber1 = Redis::get('binance:sell:number_' . $pair . '1');
@@ -394,6 +395,7 @@ class ShotLineService
             } else {
                 Redis::flushdb();
                 Redis::set('switch_'.$pair, $status);
+                Log::debug('init all order');
                 return true;
             }
         }

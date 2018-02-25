@@ -6,6 +6,7 @@ use App\Services\ConsoleService;
 use App\Services\HighFreqStrategy\ShotLineService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 
 class Kernel extends ConsoleKernel
@@ -58,17 +59,10 @@ class Kernel extends ConsoleKernel
             }
         })->cron('* * * * *');
 
-//        $schedule->call(function () {
-//            ShotLineService::cancelSellOrder('ETH_USDT');
-//        })->cron('* */'.is_null(Redis::get('binance:sell:cancel_limit_time')) ? 6 : Redis::get('binance:sell:cancel_limit_time').' * * *');
-
-//        $schedule->call(function () {
-//            for ($i = 0; $i < 12; $i++) {
-//                sleep(3);
-//                ShotLineService::cancelSellOrder('ETH_USDT');
-//                sleep(2);
-//            }
-//        })->cron('* * * * *');
+        $limitTime = Redis::get('binance:sell:cancel_limit_time');
+        $schedule->call(function () {
+                ShotLineService::cancelSellOrder('ETH_USDT');
+        })->cron('* */'.$limitTime.' * * *');
         // everyTenMinutes everyThirtyMinutes hourly
     }
 }
