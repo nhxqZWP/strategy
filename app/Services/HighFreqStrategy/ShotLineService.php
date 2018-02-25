@@ -3,6 +3,7 @@
 namespace App\Services\HighFreqStrategy;
 
 use App\Services\ConsoleService;
+use App\Services\LockService;
 use App\Services\TradePlatform\BinanceService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -85,6 +86,12 @@ class ShotLineService
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
+        // 加锁
+        $isLock = LockService::lock('binance:lock:shot_1', 1, 1);
+        if (!$isLock) {
+            return ['result' => true, 'message' => 'trigger lock 1'];
+        }
+
         $sellNumber = Redis::get('binance:sell:number_'.$pair.'1');
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
         if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
@@ -160,6 +167,12 @@ class ShotLineService
         set_time_limit(0);
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+
+        // 加锁
+        $isLock = LockService::lock('binance:lock:shot_2', 1, 1);
+        if (!$isLock) {
+            return ['result' => true, 'message' => 'trigger lock 2'];
+        }
 
         $sellNumber = Redis::get('binance:sell:number_'.$pair.'2');
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
@@ -237,6 +250,12 @@ class ShotLineService
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
+        // 加锁
+        $isLock = LockService::lock('binance:lock:shot_3', 1, 1);
+        if (!$isLock) {
+            return ['result' => true, 'message' => 'trigger lock 3'];
+        }
+
         $sellNumber = Redis::get('binance:sell:number_'.$pair.'3');
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
         if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
@@ -312,6 +331,12 @@ class ShotLineService
         set_time_limit(0);
         $api = app('Binance');
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+
+        // 加锁
+        $isLock = LockService::lock('binance:lock:shot_4', 1, 1);
+        if (!$isLock) {
+            return ['result' => true, 'message' => 'trigger lock 4'];
+        }
 
         $sellNumber = Redis::get('binance:sell:number_'.$pair.'4');
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
