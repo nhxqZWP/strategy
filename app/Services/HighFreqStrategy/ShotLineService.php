@@ -105,6 +105,9 @@ class ShotLineService
                   //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'1');
                 if (is_null($runTimeLimit)) {
+                    if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        return ['result' => true, 'message' => 'have partially filled buy order'];
+                    }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'1', 2);
                     return ['result' => true, 'message' => 'auto cancel buy order'];
@@ -187,6 +190,9 @@ class ShotLineService
                 //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'2');
                 if (is_null($runTimeLimit)) {
+                    if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        return ['result' => true, 'message' => 'have partially filled buy order'];
+                    }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'2', 2);
                     return ['result' => true, 'message' => 'auto cancel buy order'];
@@ -269,6 +275,9 @@ class ShotLineService
                 //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'3');
                 if (is_null($runTimeLimit)) {
+                    if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        return ['result' => true, 'message' => 'have partially filled buy order'];
+                    }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'3', 2);
                     return ['result' => true, 'message' => 'auto cancel buy order'];
@@ -351,6 +360,9 @@ class ShotLineService
                 //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'4');
                 if (is_null($runTimeLimit)) {
+                    if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        return ['result' => true, 'message' => 'have partially filled buy order'];
+                    }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'4', 2);
                     return ['result' => true, 'message' => 'auto cancel buy order'];
