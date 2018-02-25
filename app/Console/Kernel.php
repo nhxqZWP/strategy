@@ -61,6 +61,7 @@ class Kernel extends ConsoleKernel
         })->cron('* * * * *');
 
         $limitTime = Redis::get('binance:sell:cancel_limit_time');
+        if (is_null($limitTime)) $limitTime = 6;
         $schedule->call(function () {
                 ShotLineService::cancelSellOrder('ETH_USDT');
         })->cron('* */'.$limitTime.' * * *');

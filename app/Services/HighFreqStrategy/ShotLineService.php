@@ -398,11 +398,13 @@ class ShotLineService
         if (!is_null($sellNumber1) && $sellStatus1['status'] == 'NEW' && $sellStatus2['status'] == 'NEW' && $sellStatus3['status'] == 'NEW' && $sellStatus4['status'] == 'NEW') {
             // 四组卖单全未成交
             $status = Redis::get('switch_'.$pair);
+            $limitTime = Redis::get('binance:sell:cancel_limit_time');
             if (is_null($status)) {
                 return false;
             } else {
                 Redis::flushdb();
                 Redis::set('switch_'.$pair, $status);
+                Redis::set('binance:sell:cancel_limit_time', $limitTime);
                 Log::debug('init all order');
                 return true;
             }
