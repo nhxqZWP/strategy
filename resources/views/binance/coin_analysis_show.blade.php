@@ -37,18 +37,73 @@
                                         </form>
                                     </td>
                                     <td width="30px"> </td>
-                                    <td> 每笔买卖ETH量:</td>
+                                    <td> 每笔净利润:(用BNB)</td>
                                     <td>
-                                        <form action="/quantity" method="post">
-                                            <input type="text" name="quantity" value="{{$quantity}}" size="10">
+                                        <form action="/binance/profit" method="post">
+                                            <input type="text" name="profit" value="{{$profit}}" size="10">
                                             <input type="hidden" name="pair" value="{{$pair}}">
+                                            <input type="submit" name="提交">
+                                        </form>
+                                    </td>
+                                    <td width="30px"> </td>
+                                    <td> 卖单取消时间:</td>
+                                    <td>
+                                        <form action="/binance/cancelSell" method="post">
+                                            <input type="text" name="time" value="{{$sellCancelTime}}" size="10">h
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <br>
+                        <div class="box-body">
+                            <form action="/binance/params" method="post">
+                                <table border="1px" width="800px">
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-center">第一组</th>
+                                        <th class="text-center">第二组</th>
+                                        <th class="text-center">第三组</th>
+                                        <th class="text-center">第四组</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <td>ETH成交量</td>
+                                        <td>
+                                            <input type="text" name="group1_coin1" value="{{$param['1coin']}}">ETH
+                                        </td>
+                                        <td>
+                                            <input type="text" name="group2_coin1" value="{{$param['2coin']}}">ETH
+                                        </td>
+                                        <td>
+                                            <input type="text" name="group3_coin1" value="{{$param['3coin']}}">ETH
+                                        </td>
+                                        <td>
+                                            <input type="text" name="group4_coin1" value="{{$param['4coin']}}">ETH
+                                        </td>
+                                        <td rowspan="2">
+                                            <input type="hidden" name="pair" value="ETH_USDT">
+                                            <input type="submit" name="提交">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>深度偏移量</td>
+                                        <td>
+                                            <input type="text" name="group1_offset" value="{{$param['1offset']}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="group2_offset" value="{{$param['2offset']}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="group3_offset" value="{{$param['3offset']}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="group4_offset" value="{{$param['4offset']}}">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
                         <div>当前挂单列表</div>
                         <div class="dataTables_wrapper form-inline dt-bootstrap">
                             <table class="table table-bordered">

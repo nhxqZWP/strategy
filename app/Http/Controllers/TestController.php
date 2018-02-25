@@ -17,6 +17,8 @@ class TestController extends Controller
 //        BuyGoUpService::GateIoShotLineRobot();
 //        GateIoService::getOpenOrdersExist('gtc_usdt');
 //        $res = BuyGoUpService::GateIoShotLineRobot($pair);
+        $api = app('Binance');
+        dd($api->depth('ETHUSDT'));
         $res = ShotLineService::BinanceShotLine2($pair);
         dd($res);
     }

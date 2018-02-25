@@ -101,7 +101,7 @@ class ShotLineService
                 }
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
-            $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+            $quantity = Redis::get('binance:buy:quantity_'.$pair.'1'); //买卖单数量
             if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
 
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
@@ -111,7 +111,7 @@ class ShotLineService
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
-                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair); //买单偏移数
+                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair.'1'); //买单偏移数
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 1;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
@@ -130,9 +130,9 @@ class ShotLineService
             } else {
                 // 有完成的买单 则下卖单
                 if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && $buyStatus['status'] == 'FILLED') {
-                    $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
-                    if (is_null($sellDepthNumber)) $sellDepthNumber = 1.03;
-                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'1') + $sellDepthNumber;
+                    $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值(净利润)
+                    if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
+                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'1') * (1+0.001) + $sellDepthNumber;
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -174,7 +174,7 @@ class ShotLineService
                 }
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
-            $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+            $quantity = Redis::get('binance:buy:quantity_'.$pair.'2'); //买卖单数量
             if (is_null($quantity)) $quantity = 0.04;  // 买卖1个eth
 
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
@@ -184,7 +184,7 @@ class ShotLineService
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
-                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair); //买单偏移数
+                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair.'2'); //买单偏移数
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 3;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
@@ -204,8 +204,8 @@ class ShotLineService
                 // 有完成的买单 则下卖单
                 if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && $buyStatus['status'] == 'FILLED') {
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
-                    if (is_null($sellDepthNumber)) $sellDepthNumber = 1.03;
-                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'2') + $sellDepthNumber;
+                    if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
+                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'2') * (1+0.001) + $sellDepthNumber;
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -247,7 +247,7 @@ class ShotLineService
                 }
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
-            $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+            $quantity = Redis::get('binance:buy:quantity_'.$pair.'3'); //买卖单数量
             if (is_null($quantity)) $quantity = 0.06;  // 买卖1个eth
 
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
@@ -257,7 +257,7 @@ class ShotLineService
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
-                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair); //买单偏移数
+                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair.'3'); //买单偏移数
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 4;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
@@ -277,8 +277,8 @@ class ShotLineService
                 // 有完成的买单 则下卖单
                 if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && $buyStatus['status'] == 'FILLED') {
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
-                    if (is_null($sellDepthNumber)) $sellDepthNumber = 1.03;
-                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'3') + $sellDepthNumber;
+                    if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
+                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'3') * (1+0.001) + $sellDepthNumber;
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -320,7 +320,7 @@ class ShotLineService
                 }
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
-            $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+            $quantity = Redis::get('binance:buy:quantity_'.$pair.'4'); //买卖单数量
             if (is_null($quantity)) $quantity = 0.08;  // 买卖1个eth
 
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
@@ -330,7 +330,7 @@ class ShotLineService
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
-                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair); //买单偏移数
+                $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair.'4'); //买单偏移数
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 5;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
@@ -350,8 +350,8 @@ class ShotLineService
                 // 有完成的买单 则下卖单
                 if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && $buyStatus['status'] == 'FILLED') {
                     $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值
-                    if (is_null($sellDepthNumber)) $sellDepthNumber = 1.03;
-                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'4') + $sellDepthNumber;
+                    if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
+                    $sellPrice = Redis::get('binance:buy:price_'.$pair.'4') * (1+0.001) + $sellDepthNumber;
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
                         return ['result' => false, 'message' => $res['msg']];
@@ -367,5 +367,30 @@ class ShotLineService
             }
         }
         return ['result' => false, 'message' => 'have no action'];
+    }
+
+    public static function cancelSellOrder($pair)
+    {
+        $api = app('Binance');
+        $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+        $sellNumber1 = Redis::get('binance:sell:number_' . $pair . '1');
+        $sellStatus1 = $api->orderStatus($ticker, $sellNumber1);
+        $sellNumber2 = Redis::get('binance:sell:number_' . $pair . '2');
+        $sellStatus2 = $api->orderStatus($ticker, $sellNumber2);
+        $sellNumber3 = Redis::get('binance:sell:number_' . $pair . '3');
+        $sellStatus3 = $api->orderStatus($ticker, $sellNumber3);
+        $sellNumber4 = Redis::get('binance:sell:number_' . $pair . '4');
+        $sellStatus4 = $api->orderStatus($ticker, $sellNumber4);
+        if (!is_null($sellNumber1) && $sellStatus1['status'] == 'NEW' && $sellStatus2['status'] == 'NEW' && $sellStatus3['status'] == 'NEW' && $sellStatus4['status'] == 'NEW') {
+            // 四组卖单全未成交
+            $status = Redis::get('switch_'.$pair);
+            if (is_null($status)) {
+                return false;
+            } else {
+                Redis::flushdb();
+                Redis::set('switch_'.$pair, $status);
+                return true;
+            }
+        }
     }
 }

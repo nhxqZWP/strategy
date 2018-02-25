@@ -8,10 +8,14 @@ class IndexController extends Controller
 {
     public function getIndex()
     {
-        $pair1 = 'gtc_usdt';
-        $wallet1 = GateIoService::getPairBalance($pair1);
+        $pair = 'ETH_USDT';
+        // 此交易对钱包余额
+        $api = app('Binance');
+        $wallet = $api->balances();
+        $coin1 = $wallet[explode('_',$pair)[0]];
+        $coin2 = $wallet[explode('_',$pair)[1]];
         $data = [
-            'wallet1' => $wallet1
+            'wallet1' => ['coin1' => $coin1, 'coin2' => $coin2]
         ];
         return view('welcome', $data);
     }

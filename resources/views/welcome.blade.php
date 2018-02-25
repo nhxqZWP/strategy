@@ -21,7 +21,7 @@
                 <div class="small-box bg-aqua">
                     <div class="inner">
                         <h3>ETH/USDT</h3>
-                        <p>{{$wallet1['coin1_total']}}/{{$wallet1['coin2_total']}}</p>
+                        <p>{{$wallet1['coin1']['available'] + $wallet1['coin1']['onOrder']}}/{{$wallet1['coin2']['available'] + $wallet1['coin2']['onOrder']}}</p>
                     </div>
                     <div class="icon">
                         {{--<i class="ion ion-person-add"></i>--}}

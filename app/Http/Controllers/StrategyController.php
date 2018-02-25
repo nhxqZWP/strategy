@@ -97,6 +97,38 @@ class StrategyController extends Controller
         return redirect()->back()->with('message', '修改成功');
     }
 
+    public function postParams(Request $request)
+    {
+        $input = $request->input();
+        $pair = $input['pair'];
+        $quantity = Redis::get('binance:buy:quantity_'.$pair.'1'); //买卖单数量
+        if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
+        Redis::set('binance:buy:quantity_'.$pair.'1', $input['group1_coin1']);
+        Redis::set('binance:buy:quantity_'.$pair.'2', $input['group2_coin1']);
+        Redis::set('binance:buy:quantity_'.$pair.'3', $input['group3_coin1']);
+        Redis::set('binance:buy:quantity_'.$pair.'4', $input['group4_coin1']);
+        Redis::set('binance:buy:offset_'.$pair.'1', $input['group1_offset']);
+        Redis::set('binance:buy:offset_'.$pair.'2', $input['group2_offset']);
+        Redis::set('binance:buy:offset_'.$pair.'3', $input['group3_offset']);
+        Redis::set('binance:buy:offset_'.$pair.'4', $input['group4_offset']);
+        return redirect()->back()->with('message', '修改成功');
+    }
+
+    public function postProfit(Request $request)
+    {
+        $pair = $request->get('pair', 'ETH_USDT');
+        $profit = $request->get('profit', 0.2);
+        Redis::set('binance:sell:offset_'.$pair, $profit);
+        return redirect()->back()->with('message', '修改成功');
+    }
+
+    public function postCancelSell(Request $request)
+    {
+        $time = $request->get('time', 6);
+        Redis::set('binance:sell:cancel_limit_time', $time);
+        return redirect()->back()->with('message', '修改成功');
+    }
+
     public function getBinanceOneCoin(Request $request)
     {
         $pair = $request->get('pair');
@@ -122,8 +154,20 @@ class StrategyController extends Controller
         $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
         if (is_null($quantity)) $quantity = 0.1;  // 买卖1个eth
         // 每笔利润率
-//        $coin1Percent = Redis::get('coin1_percent:'.$pair);
-//        if (is_null($coin1Percent)) $coin1Percent = 0.02;
+        $profit = Redis::get('binance:sell:offset_'.$pair);
+        if (is_null($profit)) $profit = 0.2;
+        // params
+        $param['1coin'] = Redis::get('binance:buy:quantity_'.$pair.'1');
+        $param['2coin'] = Redis::get('binance:buy:quantity_'.$pair.'2');
+        $param['3coin'] = Redis::get('binance:buy:quantity_'.$pair.'3');
+        $param['4coin'] = Redis::get('binance:buy:quantity_'.$pair.'4');
+        $param['1offset'] = Redis::get('binance:buy:offset_'.$pair.'1');
+        $param['2offset'] = Redis::get('binance:buy:offset_'.$pair.'2');
+        $param['3offset'] = Redis::get('binance:buy:offset_'.$pair.'3');
+        $param['4offset'] = Redis::get('binance:buy:offset_'.$pair.'4');
+        // 卖单自动取消时间
+        $sellCancel = Redis::get('binance:sell:cancel_limit_time');
+        if (is_null($sellCancel)) $sellCancel = 6;
         $data = [
             'openOrders' => $openOrders,
             'tradeHistory' => $tradeHistory,
@@ -132,8 +176,10 @@ class StrategyController extends Controller
             'coin1' => $coin1,
             'coin2' => $coin2,
             'timeLimit' => $timeLimit,
-            'quantity' => $quantity
-//            'coinPercent' => $coin1Percent,
+            'quantity' => $quantity,
+            'param' => $param,
+            'profit' => $profit,
+            'sellCancelTime' => $sellCancel
         ];
         return view('binance.coin_analysis_show', $data);
     }

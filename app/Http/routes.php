@@ -21,6 +21,9 @@ Route::group(['middleware'=>'rbac'], function() {
     Route::post('/timelimit', 'StrategyController@timeLimit');
     Route::post('/getpercent', 'StrategyController@getpercent');
     Route::post('/quantity', 'StrategyController@postQuantity');
+    Route::post('/binance/params', 'StrategyController@postParams');
+    Route::post('/binance/profit', 'StrategyController@postProfit');
+    Route::post('/binance/cancelSell', 'StrategyController@postCancelSell');
 
     Route::get('/gtc_usdt', 'StrategyController@getGateIoOneCoin');
     Route::get('/eth_usdt', 'StrategyController@getBinanceOneCoin');

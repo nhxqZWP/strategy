@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\Services\ConsoleService;
+use App\Services\HighFreqStrategy\ShotLineService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Redis;
 
 class Kernel extends ConsoleKernel
 {
@@ -55,6 +57,10 @@ class Kernel extends ConsoleKernel
                 sleep(2);
             }
         })->cron('* * * * *');
+
+        $schedule->call(function () {
+            ShotLineService::cancelSellOrder('ETH_USDT');
+        })->cron('* */'.is_null(Redis::get('binance:sell:cancel_limit_time')) ? 6 : Redis::get('binance:sell:cancel_limit_time').' * * *');
         // everyTenMinutes everyThirtyMinutes hourly
     }
 }
