@@ -128,6 +128,7 @@ class ShotLineService
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 1;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
+                if (!isset($res['status'])) return ['result' => false, 'message' => '1:'.json_encode($res).'qua:'.$quantity.'pri:'.$price];
                 if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                     Redis::set('binance:buy:number_'.$pair.'1', $res['orderId']);
                     Redis::set('binance:buy:price_'.$pair.'1', $res['price']);
@@ -213,6 +214,7 @@ class ShotLineService
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 3;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
+                if (!isset($res['status'])) return ['result' => false, 'message' => '2:'.json_encode($res).'qua:'.$quantity.'pri:'.$price];
                 if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                     Redis::set('binance:buy:number_'.$pair.'2', $res['orderId']);
                     Redis::set('binance:buy:price_'.$pair.'2', $res['price']);
@@ -298,6 +300,7 @@ class ShotLineService
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 4;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
+                if (!isset($res['status'])) return ['result' => false, 'message' => '3:'.json_encode($res).'qua:'.$quantity.'pri:'.$price];
                 if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                     Redis::set('binance:buy:number_'.$pair.'3', $res['orderId']);
                     Redis::set('binance:buy:price_'.$pair.'3', $res['price']);
@@ -383,6 +386,7 @@ class ShotLineService
                 if (is_null($buyDepthNumber)) $buyDepthNumber = 5;
                 $price = $depthBids[$buyDepthNumber];
                 $res = $api->buy($ticker, $quantity, $price);
+                if (!isset($res['status'])) return ['result' => false, 'message' => '4:'.json_encode($res).'qua:'.$quantity.'pri:'.$price];
                 if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                     Redis::set('binance:buy:number_'.$pair.'4', $res['orderId']);
                     Redis::set('binance:buy:price_'.$pair.'4', $res['price']);
