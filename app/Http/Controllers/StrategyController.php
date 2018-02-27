@@ -64,7 +64,7 @@ class StrategyController extends Controller
         if ($plat == 'binance') {
             $api = app('Binance');
             $api->cancel($ticker, $number);
-            Redis::set('binance:buy:mark_'.$pair.'1', 2);
+            Redis::set('binance:buy:mark_'.$pair.'1', 2); //只有1的
         }
         return redirect()->back();
     }

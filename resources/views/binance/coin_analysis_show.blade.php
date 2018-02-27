@@ -117,7 +117,7 @@
                                     <th>总计</th>
                                     <th>创建时间</th>
                                     <th>状态</th>
-                                    <th>操作</th>
+                                    {{--<th>操作</th>--}}
                                 </tr>
                                 @if(!empty($openOrders))
                                     @foreach($openOrders as $oo)
@@ -133,10 +133,12 @@
                                             <td>{{$oo['price'] * $oo['origQty']}} usdt</td>
                                             <td>{{date('Y-m-d H:i:s', (int)substr($oo['time'],0,10))}}</td>
                                             <td>{{$oo['status']}}</td>
-                                            <td>
-                                                <a href="/cancel/order?number={{$oo['orderId']}}&plat=binance&pair={{$pair}}"
-                                                   class="btn btn-warning btn-xs">取消</a>
-                                            </td>
+                                            {{--<td>--}}
+                                                {{--@if($oo['side'] == 'BUY')--}}
+                                                {{--<a href="/cancel/order?number={{$oo['orderId']}}&plat=binance&pair={{$pair}}"--}}
+                                                   {{--class="btn btn-warning btn-xs">取消</a>--}}
+                                                {{--@endif--}}
+                                            {{--</td>--}}
                                         </tr>
                                     @endforeach
                                 @endif

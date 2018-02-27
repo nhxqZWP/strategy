@@ -87,7 +87,7 @@ class ShotLineService
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
         // 加锁
-        $isLock = LockService::lock('binance:lock:shot_1', 1, 1);
+        $isLock = LockService::lock('binance:lock:shot_1', 10, 1);
         if (!$isLock) {
             return ['result' => true, 'message' => 'trigger lock 1'];
         }
@@ -96,22 +96,27 @@ class ShotLineService
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
         if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
             // 有未完成卖单
+            LockService::unlock('binance:lock:shot_1');
             return ['result' => true, 'message' => 'have unfinished sell order'];
         } else {
             $buyNumber = Redis::get('binance:buy:number_'.$pair.'1');
             $buyStatus = $api->orderStatus($ticker, $buyNumber);
+            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'1');
             if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && ($buyStatus['status'] == 'NEW' || $buyStatus['status'] == 'PARTIALLY_FILLED')) {
                 // 无卖单 有未完成的买单
                   //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'1');
-                if (is_null($runTimeLimit)) {
+                if (is_null($runTimeLimit) && $buyDeal == 1) {
                     if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        LockService::unlock('binance:lock:shot_1');
                         return ['result' => true, 'message' => 'have partially filled buy order'];
                     }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'1', 2);
+                    LockService::unlock('binance:lock:shot_1');
                     return ['result' => true, 'message' => 'auto cancel buy order'];
                 }
+                LockService::unlock('binance:lock:shot_1');
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
             $quantity = Redis::get('binance:buy:quantity_'.$pair.'1'); //买卖单数量
@@ -120,7 +125,6 @@ class ShotLineService
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
             $noSell = is_null($sellNumber) || isset($sellStatus['status']) && $sellStatus['status'] == 'FILLED';
             $noBuy = is_null($buyNumber) || (isset($buyStatus['status'])&&($buyStatus['status'] == 'FILLED' || $buyStatus['status'] == 'CANCELED'));
-            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'1');
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
@@ -137,8 +141,10 @@ class ShotLineService
                     $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
                     if (is_null($timeLimit)) $timeLimit = 30;
                     Redis::setex(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'1', $timeLimit, '1');
+                    LockService::unlock('binance:lock:shot_1');
                     return ['result' => true, 'message' => 'create buy order success '.json_encode($res)];
                 } else {
+                    LockService::unlock('binance:lock:shot_1');
                     return ['result' => false, 'message' => 'create buy order fail '.json_encode($res)];
                 }
             } else {
@@ -150,18 +156,22 @@ class ShotLineService
                     $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
+                        LockService::unlock('binance:lock:shot_1');
                         return ['result' => false, 'message' => $res['msg']];
                     }
                     if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                         Redis::set('binance:sell:number_'.$pair.'1', $res['orderId']);
                         Redis::set('binance:buy:mark_'.$pair.'1', 2); //标记对应买单处理了
+                        LockService::unlock('binance:lock:shot_1');
                         return ['result' => true, 'message' => 'create sell order success '.json_encode($res)];
                     } else {
+                        LockService::unlock('binance:lock:shot_1');
                         return ['result' => false, 'message' => 'create sell order fail '.json_encode($res)];
                     }
                 }
             }
         }
+        LockService::unlock('binance:lock:shot_1');
         return ['result' => false, 'message' => 'have no action'];
     }
 
@@ -173,7 +183,7 @@ class ShotLineService
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
         // 加锁
-        $isLock = LockService::lock('binance:lock:shot_2', 1, 1);
+        $isLock = LockService::lock('binance:lock:shot_2', 10, 1);
         if (!$isLock) {
             return ['result' => true, 'message' => 'trigger lock 2'];
         }
@@ -182,22 +192,27 @@ class ShotLineService
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
         if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
             // 有未完成卖单
+            LockService::unlock('binance:lock:shot_2');
             return ['result' => true, 'message' => 'have unfinished sell order'];
         } else {
             $buyNumber = Redis::get('binance:buy:number_'.$pair.'2');
             $buyStatus = $api->orderStatus($ticker, $buyNumber);
+            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'2');
             if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && ($buyStatus['status'] == 'NEW' || $buyStatus['status'] == 'PARTIALLY_FILLED')) {
                 // 无卖单 有未完成的买单
                 //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'2');
-                if (is_null($runTimeLimit)) {
+                if (is_null($runTimeLimit) && $buyDeal == 1) {
                     if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        LockService::unlock('binance:lock:shot_2');
                         return ['result' => true, 'message' => 'have partially filled buy order'];
                     }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'2', 2);
+                    LockService::unlock('binance:lock:shot_2');
                     return ['result' => true, 'message' => 'auto cancel buy order'];
                 }
+                LockService::unlock('binance:lock:shot_2');
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
             $quantity = Redis::get('binance:buy:quantity_'.$pair.'2'); //买卖单数量
@@ -206,7 +221,6 @@ class ShotLineService
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
             $noSell = is_null($sellNumber) || isset($sellStatus['status']) && $sellStatus['status'] == 'FILLED';
             $noBuy = is_null($buyNumber) || (isset($buyStatus['status'])&&($buyStatus['status'] == 'FILLED' || $buyStatus['status'] == 'CANCELED'));
-            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'2');
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
@@ -223,8 +237,10 @@ class ShotLineService
                     $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
                     if (is_null($timeLimit)) $timeLimit = 30;
                     Redis::setex(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'2', $timeLimit, '1');
+                    LockService::unlock('binance:lock:shot_2');
                     return ['result' => true, 'message' => 'create buy order success '.json_encode($res)];
                 } else {
+                    LockService::unlock('binance:lock:shot_2');
                     return ['result' => false, 'message' => 'create buy order fail '.json_encode($res)];
                 }
             } else {
@@ -236,18 +252,22 @@ class ShotLineService
                     $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
+                        LockService::unlock('binance:lock:shot_2');
                         return ['result' => false, 'message' => $res['msg']];
                     }
                     if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                         Redis::set('binance:sell:number_'.$pair.'2', $res['orderId']);
                         Redis::set('binance:buy:mark_'.$pair.'2', 2); //标记对应买单处理了
+                        LockService::unlock('binance:lock:shot_2');
                         return ['result' => true, 'message' => 'create sell order success '.json_encode($res)];
                     } else {
+                        LockService::unlock('binance:lock:shot_2');
                         return ['result' => false, 'message' => 'create sell order fail '.json_encode($res)];
                     }
                 }
             }
         }
+        LockService::unlock('binance:lock:shot_2');
         return ['result' => false, 'message' => 'have no action'];
     }
 
@@ -259,7 +279,7 @@ class ShotLineService
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
         // 加锁
-        $isLock = LockService::lock('binance:lock:shot_3', 1, 1);
+        $isLock = LockService::lock('binance:lock:shot_3', 10, 1);
         if (!$isLock) {
             return ['result' => true, 'message' => 'trigger lock 3'];
         }
@@ -268,22 +288,27 @@ class ShotLineService
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
         if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
             // 有未完成卖单
+            LockService::unlock('binance:lock:shot_3');
             return ['result' => true, 'message' => 'have unfinished sell order'];
         } else {
             $buyNumber = Redis::get('binance:buy:number_'.$pair.'3');
             $buyStatus = $api->orderStatus($ticker, $buyNumber);
+            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'3');
             if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && ($buyStatus['status'] == 'NEW' || $buyStatus['status'] == 'PARTIALLY_FILLED')) {
                 // 无卖单 有未完成的买单
                 //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'3');
-                if (is_null($runTimeLimit)) {
+                if (is_null($runTimeLimit) && $buyDeal == 1) {
                     if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        LockService::unlock('binance:lock:shot_3');
                         return ['result' => true, 'message' => 'have partially filled buy order'];
                     }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'3', 2);
+                    LockService::unlock('binance:lock:shot_3');
                     return ['result' => true, 'message' => 'auto cancel buy order'];
                 }
+                LockService::unlock('binance:lock:shot_3');
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
             $quantity = Redis::get('binance:buy:quantity_'.$pair.'3'); //买卖单数量
@@ -292,7 +317,6 @@ class ShotLineService
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
             $noSell = is_null($sellNumber) || isset($sellStatus['status']) && $sellStatus['status'] == 'FILLED';
             $noBuy = is_null($buyNumber) || (isset($buyStatus['status'])&&($buyStatus['status'] == 'FILLED' || $buyStatus['status'] == 'CANCELED'));
-            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'3');
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
@@ -309,8 +333,10 @@ class ShotLineService
                     $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
                     if (is_null($timeLimit)) $timeLimit = 30;
                     Redis::setex(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'3', $timeLimit, '1');
+                    LockService::unlock('binance:lock:shot_3');
                     return ['result' => true, 'message' => 'create buy order success '.json_encode($res)];
                 } else {
+                    LockService::unlock('binance:lock:shot_3');
                     return ['result' => false, 'message' => 'create buy order fail '.json_encode($res)];
                 }
             } else {
@@ -322,18 +348,22 @@ class ShotLineService
                     $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
+                        LockService::unlock('binance:lock:shot_3');
                         return ['result' => false, 'message' => $res['msg']];
                     }
                     if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                         Redis::set('binance:sell:number_'.$pair.'3', $res['orderId']);
                         Redis::set('binance:buy:mark_'.$pair.'3', 2); //标记对应买单处理了
+                        LockService::unlock('binance:lock:shot_3');
                         return ['result' => true, 'message' => 'create sell order success '.json_encode($res)];
                     } else {
+                        LockService::unlock('binance:lock:shot_3');
                         return ['result' => false, 'message' => 'create sell order fail '.json_encode($res)];
                     }
                 }
             }
         }
+        LockService::unlock('binance:lock:shot_3');
         return ['result' => false, 'message' => 'have no action'];
     }
 
@@ -345,7 +375,7 @@ class ShotLineService
         $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
 
         // 加锁
-        $isLock = LockService::lock('binance:lock:shot_4', 1, 1);
+        $isLock = LockService::lock('binance:lock:shot_4', 10, 1);
         if (!$isLock) {
             return ['result' => true, 'message' => 'trigger lock 4'];
         }
@@ -354,22 +384,27 @@ class ShotLineService
         $sellStatus = $api->orderStatus($ticker, $sellNumber);
         if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
             // 有未完成卖单
+            LockService::unlock('binance:lock:shot_4');
             return ['result' => true, 'message' => 'have unfinished sell order'];
         } else {
             $buyNumber = Redis::get('binance:buy:number_'.$pair.'4');
             $buyStatus = $api->orderStatus($ticker, $buyNumber);
+            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'4');
             if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && ($buyStatus['status'] == 'NEW' || $buyStatus['status'] == 'PARTIALLY_FILLED')) {
                 // 无卖单 有未完成的买单
                 //判断是否到了最长买单时间
                 $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'4');
-                if (is_null($runTimeLimit)) {
+                if (is_null($runTimeLimit) && $buyDeal == 1) {
                     if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
+                        LockService::unlock('binance:lock:shot_4');
                         return ['result' => true, 'message' => 'have partially filled buy order'];
                     }
                     $api->cancel($ticker, $buyNumber);
                     Redis::set('binance:buy:mark_'.$pair.'4', 2);
+                    LockService::unlock('binance:lock:shot_4');
                     return ['result' => true, 'message' => 'auto cancel buy order'];
                 }
+                LockService::unlock('binance:lock:shot_4');
                 return ['result' => true, 'message' => 'have unfinished buy order'];
             }
             $quantity = Redis::get('binance:buy:quantity_'.$pair.'4'); //买卖单数量
@@ -378,7 +413,6 @@ class ShotLineService
             // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
             $noSell = is_null($sellNumber) || isset($sellStatus['status']) && $sellStatus['status'] == 'FILLED';
             $noBuy = is_null($buyNumber) || (isset($buyStatus['status'])&&($buyStatus['status'] == 'FILLED' || $buyStatus['status'] == 'CANCELED'));
-            $buyDeal = Redis::get('binance:buy:mark_'.$pair.'4');
             if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                 $depth = $api->depth($ticker);
                 $depthBids = array_keys($depth['bids']);
@@ -395,8 +429,10 @@ class ShotLineService
                     $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
                     if (is_null($timeLimit)) $timeLimit = 30;
                     Redis::setex(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'4', $timeLimit, '1');
+                    LockService::unlock('binance:lock:shot_4');
                     return ['result' => true, 'message' => 'create buy order success '.json_encode($res)];
                 } else {
+                    LockService::unlock('binance:lock:shot_4');
                     return ['result' => false, 'message' => 'create buy order fail '.json_encode($res)];
                 }
             } else {
@@ -408,18 +444,22 @@ class ShotLineService
                     $sellPrice = number_format($sellPrice, 2, '.', '');
                     $res = $api->sell($ticker, $quantity, $sellPrice);
                     if (isset($res['msg'])) {
+                        LockService::unlock('binance:lock:shot_4');
                         return ['result' => false, 'message' => $res['msg']];
                     }
                     if ($res['status'] == 'NEW' || $res['status'] == 'PARTIALLY_FILLED' || $res['status'] == 'FILLED') {
                         Redis::set('binance:sell:number_'.$pair.'4', $res['orderId']);
                         Redis::set('binance:buy:mark_'.$pair.'4', 2); //标记对应买单处理了
+                        LockService::unlock('binance:lock:shot_4');
                         return ['result' => true, 'message' => 'create sell order success '.json_encode($res)];
                     } else {
+                        LockService::unlock('binance:lock:shot_4');
                         return ['result' => false, 'message' => 'create sell order fail '.json_encode($res)];
                     }
                 }
             }
         }
+        LockService::unlock('binance:lock:shot_4');
         return ['result' => false, 'message' => 'have no action'];
     }
 
