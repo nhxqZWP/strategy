@@ -15,6 +15,7 @@
                             USDT:{{$coin2['available']}}({{$coin2['onOrder']}})&nbsp;
                             总USDT估值：{{intval(($coin1['available']+$coin1['onOrder'])*$lastPrice+$coin2['available']+$coin2['onOrder'])}}USDT
                             &nbsp;&nbsp;{{intval(($coin1['available']+$coin1['onOrder'])*$lastPrice+$coin2['available']+$coin2['onOrder'])*$usdtCny}}CNY
+                            &nbsp;BNB:{{$bnb['available']}}
                         </span>
                         {{--<span class="col-sm-offset-1">脚本运行状态:--}}
                             {{--@if($open == 2) <font color="red">close</font> <a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>--}}
@@ -22,15 +23,19 @@
                         {{--</span>--}}
                     </div>
                     @include('layouts.form_errors')
-                    <div class="box-body">
+                    <div class="dataTables_wrapper form-inline dt-bootstrap">
                         <div>
-                            <table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td>脚本运行状态:
+                                    <td colspan="2">脚本运行状态:
                                         @if($open == 2) <font color="red">close</font> &nbsp;<a href="/switch?pair={{$pair}}&status=1" class="btn btn-success btn-xs">开启</a>
                                         @else <font color="green">run</font> &nbsp;<a href="/switch?pair={{$pair}}&status=2" class="btn btn-warning btn-xs">关闭</a> @endif
                                     </td>
-                                    <td width="30px"> </td>
+                                    <td>
+                                        <a href="/init?pair={{$pair}}&plat=binance" class="btn btn-info btn-xs">进行初始化</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td> 最长挂买单时间:</td>
                                     <td>
                                         <form action="/timelimit?plat=binance" method="post">
@@ -38,7 +43,6 @@
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
-                                    <td width="30px"> </td>
                                     <td> 每笔净利润:(用BNB)</td>
                                     <td>
                                         <form action="/binance/profit" method="post">
@@ -47,7 +51,6 @@
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
-                                    <td width="30px"> </td>
                                     <td> 卖单取消时间:</td>
                                     <td>
                                         <form action="/binance/cancelSell" method="post">
@@ -58,16 +61,15 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="box-body">
+                        <div class="dataTables_wrapper form-inline dt-bootstrap">
                             <form action="/binance/params" method="post">
-                                <table border="1px" width="900px">
+                                <table border="1px" width="900px" class="table table-bordered">
                                     <tr>
-                                        <th></th>
+                                        <th><input type="submit" name="提交"></th>
                                         <th class="text-center">第一组</th>
                                         <th class="text-center">第二组</th>
                                         <th class="text-center">第三组</th>
                                         <th class="text-center">第四组</th>
-                                        <th></th>
                                     </tr>
                                     <tr>
                                         <td>ETH成交量</td>
@@ -82,10 +84,7 @@
                                         </td>
                                         <td>
                                             <input type="text" name="group4_coin1" value="{{$param['4coin']}}">ETH
-                                        </td>
-                                        <td rowspan="2">
                                             <input type="hidden" name="pair" value="ETH_USDT">
-                                            <input type="submit" name="提交">
                                         </td>
                                     </tr>
                                     <tr>
@@ -122,7 +121,11 @@
                                 </tr>
                                 @if(!empty($openOrders))
                                     @foreach($openOrders as $oo)
-                                        <tr>
+                                        @if($oo['side'] == 'SELL')
+                                            <tr style="background-color: #880000;color: #ffffff;">
+                                            @else
+                                            <tr style="background-color: #00a157;color: #ffffff;">
+                                        @endif
                                             <td>{{$oo['orderId']}}</td>
                                             <td>{{$oo['side']}}</td>
                                             <td>{{$oo['price']}} usdt</td>
@@ -155,7 +158,13 @@
                                 </tr>
                                 @if(!empty($tradeHistory))
                                     @foreach($tradeHistory as $th)
-                                        <tr>
+                                        @if($th['isBuyer'])
+                                            <tr style="background-color: #00a157;color: #ffffff;">
+                                            @elseif($th['isMaker'])
+                                            <tr style="background-color: #880000;color: #ffffff;">
+                                            @else
+                                            <tr>
+                                        @endif
                                             <td>{{$th['orderId']}}</td>
                                             <td>
                                                 @if($th['isBuyer']) 买单

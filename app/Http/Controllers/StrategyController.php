@@ -129,6 +129,16 @@ class StrategyController extends Controller
         return redirect()->back()->with('message', '修改成功');
     }
 
+    public function getInit(Request $request)
+    {
+        $plat = $request->get('plat','binance');
+        $pair = $request->get('pair');
+        if ($plat == 'binance') {
+            Redis::flushdb();
+        }
+        return redirect()->back()->with('message', '初始化成功');
+    }
+
     public function getBinanceOneCoin(Request $request)
     {
         $pair = $request->get('pair');
@@ -147,6 +157,7 @@ class StrategyController extends Controller
         $wallet = $api->balances();
         $coin1 = $wallet[explode('_',$pair)[0]];
         $coin2 = $wallet[explode('_',$pair)[1]];
+        $bnb = $wallet['BNB'];
         // 当前币价
         $lastPrice = $api->prices()[$ticker];
         // usdt_cny
@@ -185,7 +196,8 @@ class StrategyController extends Controller
             'profit' => $profit,
             'sellCancelTime' => $sellCancel,
             'lastPrice' => $lastPrice,
-            'usdtCny' => $usdtCny['last']
+            'usdtCny' => $usdtCny['last'],
+            'bnb' => $bnb
         ];
         return view('binance.coin_analysis_show', $data);
     }
