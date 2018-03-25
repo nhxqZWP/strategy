@@ -16,10 +16,12 @@ class IndexController extends Controller
 
         // test
          $ticks = $api->candlesticks("BTCUSDT", "1h");
-         foreach ($ticks as &$k => $t) {
+         $data = [];
+         foreach ($ticks as $k => $t) {
               $k = date('Y-m-d H:i:s', $k/1000);
+              $data[$k] = $t;
          }
-         dd($ticks);
+         dd($data);
 
         $coin1 = $wallet[explode('_',$pair)[0]];
         $coin2 = $wallet[explode('_',$pair)[1]];
