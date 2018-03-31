@@ -14,7 +14,7 @@ class StrategyController extends Controller
     {
         $pair = $request->get('pair');
         if (empty($pair)) return redirect()->back()->withInput()->with('error', '没有选择交易对');
-
+          dd('gate.io交易手续费0.2%');
         // 运行状态
         $open = Redis::get('switch_' . $pair);
         if (is_null($open) || $open == 2) $open = 2;
@@ -54,6 +54,14 @@ class StrategyController extends Controller
         Redis::set('switch_' . $pair, $status);
         return redirect()->back();
     }
+
+     public function updateRunStatusNew(Request $request)
+     {
+          $pair = $request->get('pair');
+          $status = $request->get('status');
+          Redis::set('switch_new_' . $pair, $status);
+          return redirect()->back();
+     }
 
     public function cancelOneOrder(Request $request)
     {
@@ -113,6 +121,17 @@ class StrategyController extends Controller
         Redis::set('binance:buy:offset_'.$pair.'4', $input['group4_offset']);
         return redirect()->back()->with('message', '修改成功');
     }
+
+     public function postParamsNew(Request $request)
+     {
+          $input = $request->input();
+          $pair = $input['pair'];
+          $quantity = Redis::get('binance:buy:quantity_'.$pair.'new'); //买卖单数量
+          if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
+          Redis::set('binance:buy:quantity_'.$pair.'new', $input['group_coin']);
+          Redis::set('binance:buy:offset_'.$pair.'new', $input['group_offset']);
+          return redirect()->back()->with('message', '修改成功');
+     }
 
     public function postProfit(Request $request)
     {
@@ -201,6 +220,72 @@ class StrategyController extends Controller
         ];
         return view('binance.coin_analysis_show', $data);
     }
+
+    // 追涨杀跌 下止损单
+     public function getBinanceOneCoinNew(Request $request)
+     {
+          $pair = $request->get('pair');
+          if (empty($pair)) return redirect()->back()->withInput()->with('error', '没有选择交易对');
+
+          // 运行状态
+          $open = Redis::get('switch_new_' . $pair);
+          if (is_null($open) || $open == 2) $open = 2;
+          $api = app('Binance');
+          $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+          // 获取当前挂单列表
+          $openOrders = $api->openOrders($ticker);
+          // 获取24内成交记录
+          $tradeHistory = array_reverse($api->history($ticker, 20));
+          // 此交易对钱包余额
+          $wallet = $api->balances();
+          $coin1 = $wallet[explode('_',$pair)[0]];
+          $coin2 = $wallet[explode('_',$pair)[1]];
+          $bnb = $wallet['BNB'];
+          // 当前币价
+          $lastPrice = $api->prices()[$ticker];
+          // usdt_cny
+          $usdtCny = GateIo::get_ticker('usdt_cny');
+          // 最长挂买单时间
+          $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
+          if (is_null($timeLimit)) $timeLimit = 30;
+          // 买卖单数量
+          $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+          if (is_null($quantity)) $quantity = 0.1;  // 买卖1个eth
+          // 每笔利润率
+          $profit = Redis::get('binance:sell:offset_'.$pair);
+          if (is_null($profit)) $profit = 0.2;
+          // params
+          $param['coin'] = Redis::get('binance:buy:quantity_'.$pair.'new');
+//          $param['1coin'] = Redis::get('binance:buy:quantity_'.$pair.'1');
+//          $param['2coin'] = Redis::get('binance:buy:quantity_'.$pair.'2');
+//          $param['3coin'] = Redis::get('binance:buy:quantity_'.$pair.'3');
+//          $param['4coin'] = Redis::get('binance:buy:quantity_'.$pair.'4');
+          $param['offset'] = Redis::get('binance:buy:offset_'.$pair.'new');
+//          $param['1offset'] = Redis::get('binance:buy:offset_'.$pair.'1');
+//          $param['2offset'] = Redis::get('binance:buy:offset_'.$pair.'2');
+//          $param['3offset'] = Redis::get('binance:buy:offset_'.$pair.'3');
+//          $param['4offset'] = Redis::get('binance:buy:offset_'.$pair.'4');
+          // 卖单自动取消时间
+//          $sellCancel = Redis::get('binance:sell:cancel_limit_time');
+//          if (is_null($sellCancel)) $sellCancel = 6;
+          $data = [
+               'openOrders' => $openOrders,
+               'tradeHistory' => $tradeHistory,
+               'open' => $open,
+               'pair' => $pair,
+               'coin1' => $coin1,
+               'coin2' => $coin2,
+               'timeLimit' => $timeLimit,
+               'quantity' => $quantity,
+               'param' => $param,
+               'profit' => $profit,
+//               'sellCancelTime' => $sellCancel,
+               'lastPrice' => $lastPrice,
+               'usdtCny' => $usdtCny['last'],
+               'bnb' => $bnb
+          ];
+          return view('binance.coin_analysis_show_new', $data);
+     }
 
 //    public function chart()
 //    {

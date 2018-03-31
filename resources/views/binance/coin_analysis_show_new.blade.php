@@ -43,7 +43,7 @@
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
-                                    <td> 每笔净利润:(用BNB)</td>
+                                    <td> 每笔净利润:(用BNB第一年50%)</td>
                                     <td>
                                         <form action="/binance/profit" method="post">
                                             <input type="text" name="profit" value="{{$profit}}" size="10">
@@ -51,56 +51,56 @@
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
-                                    <td> 卖单取消时间:</td>
-                                    <td>
-                                        <form action="/binance/cancelSell" method="post">
-                                            <input type="text" name="time" value="{{$sellCancelTime}}" size="10">h
-                                            <input type="submit" name="提交">
-                                        </form>
-                                    </td>
+                                    {{--<td> 卖单取消时间:</td>--}}
+                                    {{--<td>--}}
+                                        {{--<form action="/binance/cancelSell" method="post">--}}
+                                            {{--<input type="text" name="time" value="{{$sellCancelTime}}" size="10">h--}}
+                                            {{--<input type="submit" name="提交">--}}
+                                        {{--</form>--}}
+                                    {{--</td>--}}
                                 </tr>
                             </table>
                         </div>
                         <div class="dataTables_wrapper form-inline dt-bootstrap">
-                            <form action="/binance/params" method="post">
+                            <form action="/binance/params_new" method="post">
                                 <table border="1px" width="900px" class="table table-bordered">
                                     <tr>
                                         <th><input type="submit" name="提交"></th>
-                                        <th class="text-center">第一组</th>
-                                        <th class="text-center">第二组</th>
-                                        <th class="text-center">第三组</th>
-                                        <th class="text-center">第四组</th>
+                                        <th class="text-center">一组</th>
+                                        {{--<th class="text-center">第二组</th>--}}
+                                        {{--<th class="text-center">第三组</th>--}}
+                                        {{--<th class="text-center">第四组</th>--}}
                                     </tr>
                                     <tr>
                                         <td>ETH成交量</td>
                                         <td>
-                                            <input type="text" name="group1_coin1" value="{{$param['1coin']}}">ETH
+                                            <input type="text" name="group_coin" value="{{$param['coin']}}">ETH
                                         </td>
-                                        <td>
-                                            <input type="text" name="group2_coin1" value="{{$param['2coin']}}">ETH
-                                        </td>
-                                        <td>
-                                            <input type="text" name="group3_coin1" value="{{$param['3coin']}}">ETH
-                                        </td>
-                                        <td>
-                                            <input type="text" name="group4_coin1" value="{{$param['4coin']}}">ETH
-                                            <input type="hidden" name="pair" value="ETH_USDT">
-                                        </td>
+                                        {{--<td>--}}
+                                            {{--<input type="text" name="group2_coin1" value="{{$param['2coin']}}">ETH--}}
+                                        {{--</td>--}}
+                                        {{--<td>--}}
+                                            {{--<input type="text" name="group3_coin1" value="{{$param['3coin']}}">ETH--}}
+                                        {{--</td>--}}
+                                        {{--<td>--}}
+                                            {{--<input type="text" name="group4_coin1" value="{{$param['4coin']}}">ETH--}}
+                                            {{--<input type="hidden" name="pair" value="ETH_USDT">--}}
+                                        {{--</td>--}}
                                     </tr>
                                     <tr>
                                         <td>深度偏移量</td>
                                         <td>
-                                            <input type="text" name="group1_offset" value="{{$param['1offset']}}">
+                                            <input type="text" name="group_offset" value="{{$param['offset']}}">
                                         </td>
-                                        <td>
-                                            <input type="text" name="group2_offset" value="{{$param['2offset']}}">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="group3_offset" value="{{$param['3offset']}}">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="group4_offset" value="{{$param['4offset']}}">
-                                        </td>
+                                        {{--<td>--}}
+                                            {{--<input type="text" name="group2_offset" value="{{$param['2offset']}}">--}}
+                                        {{--</td>--}}
+                                        {{--<td>--}}
+                                            {{--<input type="text" name="group3_offset" value="{{$param['3offset']}}">--}}
+                                        {{--</td>--}}
+                                        {{--<td>--}}
+                                            {{--<input type="text" name="group4_offset" value="{{$param['4offset']}}">--}}
+                                        {{--</td>--}}
                                     </tr>
                                 </table>
                             </form>
@@ -219,6 +219,6 @@
         })
     </script>
     <script language="JavaScript">
-        setTimeout(function(){location.reload()},60000); //指定60秒刷新一次
+        setTimeout(function(){location.reload()},30000); //指定30秒刷新一次
     </script>
 @endsection

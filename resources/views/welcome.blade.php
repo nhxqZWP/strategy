@@ -26,7 +26,7 @@
                     <div class="icon">
                         {{--<i class="ion ion-person-add"></i>--}}
                     </div>
-                    <a href="/eth_usdt?pair=ETH_USDT" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/eth_usdt_new?pair=ETH_USDT" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 

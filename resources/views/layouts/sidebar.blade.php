@@ -14,6 +14,9 @@
                 <ul class="treeview-menu">
                     <li><a href="/eth_usdt?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT</a></li>
                 </ul>
+                <ul class="treeview-menu">
+                    <li><a href="/eth_usdt_new?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT (new)</a></li>
+                </ul>
             </li>
 
             <li class="treeview active">

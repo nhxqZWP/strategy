@@ -17,17 +17,20 @@ require __DIR__ . '/routes-common.php';
 Route::group(['middleware'=>'rbac'], function() {
     Route::get('/', 'IndexController@getIndex');
     Route::get('/switch', 'StrategyController@updateRunStatus');
+    Route::get('switch_new', 'StrategyController@updateRunStatusNew');
     Route::get('/cancel/order', 'StrategyController@cancelOneOrder');
     Route::post('/timelimit', 'StrategyController@timeLimit');
     Route::post('/getpercent', 'StrategyController@getpercent');
     Route::post('/quantity', 'StrategyController@postQuantity');
     Route::post('/binance/params', 'StrategyController@postParams');
+    Route::post('/binance/params_new', 'StrategyController@postParamsNew');
     Route::post('/binance/profit', 'StrategyController@postProfit');
     Route::post('/binance/cancelSell', 'StrategyController@postCancelSell');
     Route::get('/init', 'StrategyController@getInit');
 
     Route::get('/gtc_usdt', 'StrategyController@getGateIoOneCoin');
     Route::get('/eth_usdt', 'StrategyController@getBinanceOneCoin');
+    Route::get('/eth_usdt_new', 'StrategyController@getBinanceOneCoinNew');
 });
 
 Route::get('test', 'TestController@testLeeksReaper');
