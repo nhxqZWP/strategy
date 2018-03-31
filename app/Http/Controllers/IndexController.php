@@ -18,7 +18,7 @@ class IndexController extends Controller
 
         // test show k线图
          $ticks = $api->candlesticks("BTCUSDT", "1m");
-
+         dd(end($ticks));
 //         $data = [];
 //         foreach ($ticks as $k => $t) {
 //              $k = date('Y-m-d H:i:s', $k/1000);

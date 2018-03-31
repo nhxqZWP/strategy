@@ -83,13 +83,14 @@ class Kernel extends ConsoleKernel
     {
          $api = app('Binance');
          $ticks = $api->candlesticks("BTCUSDT", $period);
-
+//         krsort($ticks);
+         // 记录价格趋势
+         dd(end($ticks));
 //         $data = [];
 //         foreach ($ticks as $k => $t) {
 //              $k = date('Y-m-d H:i:s', $k/1000);
 //              $data[$k] = $t;
 //         }
-         krsort($ticks);
 //         dd($data);
     }
 

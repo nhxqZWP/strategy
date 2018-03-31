@@ -586,8 +586,8 @@ class ShotLineService
                     if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && $buyStatus['status'] == 'FILLED') {
                          $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值(净利润)
                          if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
-                         $chengben = Redis::get('binance:buy:price_'.$pair.'new') * (1+0.001);
-                         $sellPrice = $chengben + $sellDepthNumber;
+                         $chengben = Redis::get('binance:buy:price_'.$pair.'new');
+                         $sellPrice = $chengben * (1+0.001) + $sellDepthNumber; // 第一年0.1手续费
                          $sellPrice = number_format($sellPrice, 2, '.', '');
                          // 下止损单
                          $stopLossOffset = Redis::get('binance:sell:stop_loss_offset_'.$pair.'new');
