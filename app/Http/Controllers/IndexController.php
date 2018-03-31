@@ -25,7 +25,7 @@ class IndexController extends Controller
               $data[$k] = $t;
          }
          krsort($data);
-         dd($data);
+         dd($ticks);
 
         $coin1 = $wallet[explode('_',$pair)[0]];
         $coin2 = $wallet[explode('_',$pair)[1]];

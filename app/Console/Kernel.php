@@ -67,6 +67,10 @@ class Kernel extends ConsoleKernel
               }
          })->cron('* * * * *');
 
+         $schedule->call(function () {
+              ConsoleKernel::KlineToChange('1m');
+         })->cron('* * * * *');
+
 //        $limitTime = Redis::get('binance:sell:cancel_limit_time');
 //        if (is_null($limitTime)) $limitTime = 6;
 //        $schedule->call(function () {
@@ -74,4 +78,19 @@ class Kernel extends ConsoleKernel
 //        })->cron('0 */'.$limitTime.' * * *');
         // everyTenMinutes everyThirtyMinutes hourly
     }
+
+    public static function KlineToChange($period = '1m')
+    {
+         $api = app('Binance');
+         $ticks = $api->candlesticks("BTCUSDT", $period);
+
+//         $data = [];
+//         foreach ($ticks as $k => $t) {
+//              $k = date('Y-m-d H:i:s', $k/1000);
+//              $data[$k] = $t;
+//         }
+         krsort($ticks);
+//         dd($data);
+    }
+
 }
