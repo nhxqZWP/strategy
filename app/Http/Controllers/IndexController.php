@@ -19,12 +19,12 @@ class IndexController extends Controller
         // test show k线图
          $ticks = $api->candlesticks("BTCUSDT", "1m");
 
-         $data = [];
-         foreach ($ticks as $k => $t) {
-              $k = date('Y-m-d H:i:s', $k/1000);
-              $data[$k] = $t;
-         }
-         krsort($data);
+//         $data = [];
+//         foreach ($ticks as $k => $t) {
+//              $k = date('Y-m-d H:i:s', $k/1000);
+//              $data[$k] = $t;
+//         }
+         krsort($ticks);
          dd($ticks);
 
         $coin1 = $wallet[explode('_',$pair)[0]];
