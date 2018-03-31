@@ -34,6 +34,13 @@
                                     <td>
                                         <a href="/init?pair={{$pair}}&plat=binance" class="btn btn-info btn-xs">进行初始化</a>
                                     </td>
+                                    <td> 止损偏移:</td>
+                                    <td>
+                                        <form action="/stop_loss?plat=binance" method="post">
+                                            <input type="text" name="stop_loss" value="{{$stopLoss}}" size="10">s
+                                            <input type="submit" name="提交">
+                                        </form>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td> 最长挂买单时间:</td>
@@ -66,7 +73,7 @@
                                 <table border="1px" width="900px" class="table table-bordered">
                                     <tr>
                                         <th><input type="submit" name="提交"></th>
-                                        <th class="text-center">一组</th>
+                                        <th class="text-center"></th>
                                         {{--<th class="text-center">第二组</th>--}}
                                         {{--<th class="text-center">第三组</th>--}}
                                         {{--<th class="text-center">第四组</th>--}}
@@ -145,7 +152,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div>24内成交记录</div>
+                        <div>成交记录</div>
                         <div class="dataTables_wrapper form-inline dt-bootstrap">
                             <table class="table table-bordered">
                                 <tbody>

@@ -27,6 +27,7 @@ Route::group(['middleware'=>'rbac'], function() {
     Route::post('/binance/profit', 'StrategyController@postProfit');
     Route::post('/binance/cancelSell', 'StrategyController@postCancelSell');
     Route::get('/init', 'StrategyController@getInit');
+    Route::post('/stop_loss', 'StrategyController@stopLossOffset');
 
     Route::get('/gtc_usdt', 'StrategyController@getGateIoOneCoin');
     Route::get('/eth_usdt', 'StrategyController@getBinanceOneCoin');

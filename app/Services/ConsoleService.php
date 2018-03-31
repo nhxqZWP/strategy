@@ -93,4 +93,19 @@ class ConsoleService
         Log::debug('4:'.$res['message']);
 //        }
     }
+
+     public static function runShotLineNew()
+     {
+          $pair = 'ETH_USDT';
+          // 运行总开关
+          $open = Redis::get('switch_new_'.$pair);
+          if (is_null($open) || $open == 2) return false;
+          // 如果挂单都成交或者到了指定时间
+//        $runTimeLimit = Redis::get(self::GTC_RUN_TIME_LIMIT_KEY);
+//        if (!$openOrderExist || is_null($runTimeLimit)) {
+          $res = ShotLineService::BinanceShotLineNew($pair);
+//        if (!$res['result']) {
+          Log::debug('new:'.$res['message']);
+//        }
+     }
 }

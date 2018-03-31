@@ -158,6 +158,14 @@ class StrategyController extends Controller
         return redirect()->back()->with('message', '初始化成功');
     }
 
+    public function stopLossOffset(Request $request)
+    {
+         $stopLossOffset = $request->get('stop_loss', 0);
+         $pair = $request->get('pair', 'ETH_USDT');
+         Redis::set('binance:sell:stop_loss_offset_'.$pair.'new', $stopLossOffset);
+         return redirect()->back()->with('message', '修改成功');
+    }
+
     public function getBinanceOneCoin(Request $request)
     {
         $pair = $request->get('pair');
@@ -249,11 +257,13 @@ class StrategyController extends Controller
           $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
           if (is_null($timeLimit)) $timeLimit = 30;
           // 买卖单数量
-          $quantity = Redis::get('binance:buy:quantity_'.$pair); //买卖单数量
+          $quantity = Redis::get('binance:buy:quantity_'.$pair.'new'); //买卖单数量
           if (is_null($quantity)) $quantity = 0.1;  // 买卖1个eth
           // 每笔利润率
-          $profit = Redis::get('binance:sell:offset_'.$pair);
+          $profit = Redis::get('binance:sell:offset_'.$pair.'new');
           if (is_null($profit)) $profit = 0.2;
+          // 止损偏移
+          $stopLossOffset = Redis::get('binance:sell:stop_loss_offset_'.$pair.'new');
           // params
           $param['coin'] = Redis::get('binance:buy:quantity_'.$pair.'new');
 //          $param['1coin'] = Redis::get('binance:buy:quantity_'.$pair.'1');
@@ -282,7 +292,8 @@ class StrategyController extends Controller
 //               'sellCancelTime' => $sellCancel,
                'lastPrice' => $lastPrice,
                'usdtCny' => $usdtCny['last'],
-               'bnb' => $bnb
+               'bnb' => $bnb,
+               'stopLoss' => $stopLossOffset
           ];
           return view('binance.coin_analysis_show_new', $data);
      }
