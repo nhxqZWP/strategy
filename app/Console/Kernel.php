@@ -82,16 +82,19 @@ class Kernel extends ConsoleKernel
     public static function KlineToChange($period = '1m')
     {
          $api = app('Binance');
-         $ticks = $api->candlesticks("BTCUSDT", $period);
-//         krsort($ticks);
+         $ticks = $api->candlesticks("ETHUSDT", $period); //ethusdt
          // 记录价格趋势
-         dd(end($ticks));
-//         $data = [];
-//         foreach ($ticks as $k => $t) {
-//              $k = date('Y-m-d H:i:s', $k/1000);
-//              $data[$k] = $t;
-//         }
-//         dd($data);
+         $end = end($ticks);
+         $change = $end['close'] - $end['open'];
+         if ($change > 0) {
+              Redis::set('binance:price_change', 1);  //1-涨 2-跌
+              return 1;
+         } elseif ($change < 0) {
+              Redis::set('binance:price_change', 2);  //1-涨 2-跌
+              return 2;
+         } else {
+              return null;
+         }
     }
 
 }

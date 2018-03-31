@@ -17,8 +17,9 @@ class IndexController extends Controller
          var_dump($lastPrice);
 
         // test show k线图
-         $ticks = $api->candlesticks("BTCUSDT", "1m");
+         $ticks = $api->candlesticks("ETHUSDT", "1m");
          $end = end($ticks);
+         dd($end);
          dd($end['close'] - $end['open']);
 //         $data = [];
 //         foreach ($ticks as $k => $t) {
