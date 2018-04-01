@@ -4,7 +4,7 @@
     <list default="true" id="7835dce0-5645-45db-9c3a-e858deab460f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/resources/views/binance/coin_analysis_show_new.blade.php" afterPath="$PROJECT_DIR$/resources/views/binance/coin_analysis_show_new.blade.php" />
+      <change beforePath="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" afterPath="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +18,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="25" column="72" lean-forward="false" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="72" />
+            <state relative-caret-position="334">
+              <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="59" />
               <folding>
                 <element signature="e#7#392#0#PHP" expanded="true" />
               </folding>
@@ -40,66 +40,28 @@
       <file leaf-file-name="StrategyController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="122" column="5" lean-forward="true" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
+            <state relative-caret-position="440">
+              <caret line="256" column="78" lean-forward="false" selection-start-line="256" selection-start-column="50" selection-end-line="256" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShotLineService.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShotLineService.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="506" column="28" lean-forward="true" selection-start-line="506" selection-start-column="28" selection-end-line="506" selection-end-column="28" />
+            <state relative-caret-position="287">
+              <caret line="587" column="80" lean-forward="false" selection-start-line="587" selection-start-column="80" selection-end-line="587" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="46" column="47" lean-forward="false" selection-start-line="46" selection-start-column="47" selection-end-line="46" selection-end-column="47" />
-              <folding>
-                <marker date="1522565663929" expanded="true" signature="9:25" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="37:51" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="672:733" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="738:799" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2146:2159" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2214:2228" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2341:2358" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2424:2434" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2500:2539" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2545:2562" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2567:2586" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2653:2660" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2653:2692" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2698:2715" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="2720:2739" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="3171:3184" ph="..." />
-                <marker date="1522565663929" expanded="true" signature="3188:3205" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2018_03_31_211156_create_coin_profit_day_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_31_211156_create_coin_profit_day_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="coin_analysis_show_new.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="coin_analysis_show_new.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/binance/coin_analysis_show_new.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="95" column="41" lean-forward="true" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
+            <state relative-caret-position="293">
+              <caret line="47" column="64" lean-forward="false" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="64" />
               <folding>
                 <marker date="1522566239042" expanded="true" signature="9:25" ph="..." />
                 <marker date="1522566239042" expanded="true" signature="37:51" ph="..." />
@@ -160,8 +122,8 @@
       <file leaf-file-name="ConsoleService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Services/ConsoleService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="124" column="27" lean-forward="true" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
+            <state relative-caret-position="155">
+              <caret line="96" column="28" lean-forward="false" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -170,7 +132,7 @@
       <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
+            <state relative-caret-position="387">
               <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
               <folding>
                 <element signature="e#31#63#0#PHP" expanded="true" />
@@ -186,8 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ControllerDispatcher</find>
-      <find>open_orders</find>
       <find>get_trade_history</find>
       <find>getIndex</find>
       <find>morris</find>
@@ -214,8 +174,10 @@
       <find>getInit</find>
       <find>switch_new_</find>
       <find>postParams</find>
-      <find>gtc_usdt</find>
       <find>postParamsNew</find>
+      <find>gtc_usdt</find>
+      <find>timelimit</find>
+      <find>timeLimit(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -252,15 +214,15 @@
         <option value="$PROJECT_DIR$/resources/views/binance/coin_analysis_show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StrategyController.php" />
-        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
         <option value="$PROJECT_DIR$/app/Services/ConsoleService.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_03_31_211156_create_coin_profit_day_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/binance/coin_analysis_show_new.blade.php" />
+        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
       </list>
     </option>
   </component>
@@ -607,7 +569,7 @@
       <workItem from="1519737237390" duration="8221000" />
       <workItem from="1519817626499" duration="171000" />
       <workItem from="1519820899806" duration="45000" />
-      <workItem from="1522500097368" duration="17487000" />
+      <workItem from="1522500097368" duration="18562000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1519263242632</created>
@@ -889,11 +851,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522565924858</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="new strategy final">
+      <created>1522566255354</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1522566255354</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127867000" />
+    <option name="totallyTimeSpent" value="128942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1338,39 +1307,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
-          <folding>
-            <element signature="e#31#63#0#PHP" expanded="true" />
-            <marker date="1522520491721" expanded="true" signature="2263:2271" ph="..." />
-            <marker date="1522520491721" expanded="true" signature="2263:2272" ph="..." />
-            <marker date="1522520491721" expanded="true" signature="2280:2306" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/ConsoleService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="124" column="27" lean-forward="true" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2018_03_31_211156_create_coin_profit_day_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1401,36 +1341,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
+          <folding>
+            <element signature="e#31#63#0#PHP" expanded="true" />
+            <marker date="1522520491721" expanded="true" signature="2263:2271" ph="..." />
+            <marker date="1522520491721" expanded="true" signature="2263:2272" ph="..." />
+            <marker date="1522520491721" expanded="true" signature="2280:2306" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/ConsoleService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="96" column="28" lean-forward="false" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="25" column="72" lean-forward="false" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="72" />
+        <state relative-caret-position="334">
+          <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="59" />
           <folding>
             <element signature="e#7#392#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="506" column="28" lean-forward="true" selection-start-line="506" selection-start-column="28" selection-end-line="506" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="122" column="5" lean-forward="true" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/binance/coin_analysis_show_new.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="95" column="41" lean-forward="true" selection-start-line="95" selection-start-column="41" selection-end-line="95" selection-end-column="41" />
+        <state relative-caret-position="293">
+          <caret line="47" column="64" lean-forward="false" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="64" />
           <folding>
             <marker date="1522566239042" expanded="true" signature="9:25" ph="..." />
             <marker date="1522566239042" expanded="true" signature="37:51" ph="..." />
@@ -1484,6 +1437,22 @@
             <marker date="1522566239042" expanded="true" signature="12181:12231" ph="..." />
             <marker date="1522566239042" expanded="true" signature="13392:13396" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="256" column="78" lean-forward="false" selection-start-line="256" selection-start-column="50" selection-end-line="256" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="587" column="80" lean-forward="false" selection-start-line="587" selection-start-column="80" selection-end-line="587" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -542,7 +542,7 @@ class ShotLineService
                if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && ($buyStatus['status'] == 'NEW' || $buyStatus['status'] == 'PARTIALLY_FILLED')) {
                     // 无卖单 有未完成的买单
                     //判断是否到了最长买单时间
-                    $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'new');
+                    $runTimeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY);
                     if (is_null($runTimeLimit) && $buyDeal == 1) {
                          if ($buyStatus['status'] == 'PARTIALLY_FILLED') {
                               LockService::unlock('binance:lock:shot_new');
@@ -583,7 +583,7 @@ class ShotLineService
                          // 设定此次挂单时间
                          $timeLimit = Redis::get(ConsoleService::BINANCE_RUN_TIME_LIMIT_VALUE);
                          if (is_null($timeLimit)) $timeLimit = 30;
-                         Redis::setex(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY.'new', $timeLimit, '1');
+                         Redis::setex(ConsoleService::BINANCE_RUN_TIME_LIMIT_KEY, $timeLimit, '1');
                          LockService::unlock('binance:lock:shot_new');
                          return ['result' => true, 'message' => 'create buy order success '.json_encode($res)];
                     } else {
