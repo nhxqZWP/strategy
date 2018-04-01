@@ -22,7 +22,7 @@ class CreateCoinProfitDayTable extends Migration
               $table->unsignedInteger("trade_no");
               $table->unsignedTinyInteger("type")->default(1);
               $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-              $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+//              $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 
               $table->index('uid');
               $table->unique(['uid', 'trade_no']);
