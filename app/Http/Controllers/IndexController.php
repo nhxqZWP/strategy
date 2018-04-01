@@ -29,10 +29,11 @@ class IndexController extends Controller
 
         $coin1 = $wallet[explode('_',$pair)[0]];
         $coin2 = $wallet[explode('_',$pair)[1]];
-//         $coin1 = 1000;
-//         $coin2 = 2000;
+
+        $list = \DB::table('everyday_profit')->orderBy('created_at', 'desc')->paginate(7);
+
         $data = [
-            'wallet1' => ['coin1' => $coin1, 'coin2' => $coin2]
+            'wallet1' => ['coin1' => $coin1, 'coin2' => $coin2, 'list' => $list]
         ];
         return view('welcome', $data);
     }

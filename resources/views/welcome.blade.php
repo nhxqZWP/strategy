@@ -31,9 +31,43 @@
             </div>
 
         </div>
+
         <!-- Your Page Content Here -->
         <div class="row">
             <section class="col-lg-12 connectedSortable ui-sortable">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h4 class="box-title">追涨杀跌 测试收益日志</h4>
+                            </div>
+                            <div class="box-body">
+                                <div class="dataTables_wrapper form-inline dt-bootstrap">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width: 20px">记录日期</th>
+                                            <th>用户id</th>
+                                            <th>交易币(可用+冻结)</th>
+                                            <th>USDT(可用+冻结)</th>
+                                        </tr>
+                                        @if(!empty($list))
+                                            @foreach($list as $item)
+                                                <tr>
+                                                    <td>{{$item->created_at}}</td>
+                                                    <td>{{$item->uid}}</td>
+                                                    <td>{{$item->coin_avail + $item->coin_onorder}} ({{$item->coin_avail}}+{{$item->coin_onorder}})</td>
+                                                    <td>{{$item->usdt_avail + $item->usdt_onorder}} ({{$item->usdt_avail}}+{{$item->usdt_onorder}})</td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="box-footer clearfix">
+                                @if(!empty($list)){!! $list->render() !!}@endif
+                            </div>
+                        </div>
+
             </section>
         </div>
 
