@@ -17,7 +17,7 @@ require __DIR__ . '/routes-common.php';
 Route::group(['middleware'=>'rbac'], function() {
     Route::get('/', 'IndexController@getIndex');
     Route::get('/switch', 'StrategyController@updateRunStatus');
-    Route::get('switch_new', 'StrategyController@updateRunStatusNew');
+    Route::get('/switch_new', 'StrategyController@updateRunStatusNew');
     Route::get('/cancel/order', 'StrategyController@cancelOneOrder');
     Route::post('/timelimit', 'StrategyController@timeLimit');
     Route::post('/getpercent', 'StrategyController@getpercent');

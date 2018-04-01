@@ -527,12 +527,28 @@ class ShotLineService
           set_time_limit(0);
           $api = app('Binance');
           $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
-
-
           $sellNumber = Redis::get('binance:sell:number_'.$pair.'new');
           $sellStatus = $api->orderStatus($ticker, $sellNumber);
+          $chengben = Redis::get('binance:buy:price_'.$pair.'new');
+          $quantity = Redis::get('binance:buy:quantity_'.$pair.'new'); //买卖单数量
+          if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
           if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
-               // 有未完成卖单
+               // 有未完成卖单 先判断止损
+               $lastPrice = $api->prices()[$ticker];
+               if ($lastPrice < $chengben) {
+                    // 取消卖单
+                    $api->cancel($ticker, $sellNumber);
+                    sleep(1);
+                    // 下市价单
+                    $order = $api->marketSell($ticker, $quantity);
+                    if (isset($order['msg'])) {
+                         LockService::unlock('binance:lock:shot_new');
+                         return ['result' => false, 'message' => $order['msg']];
+                    }
+                    Redis::set('binance:buy:mark_'.$pair.'new', 2); //标记对应买单处理了
+                    LockService::unlock('binance:lock:shot_new');
+                    return ['result' => true, 'message' => 'make market sell order to stop loss'];
+               }
                LockService::unlock('binance:lock:shot_new');
                return ['result' => true, 'message' => 'have unfinished sell order'];
           } else {
@@ -556,8 +572,6 @@ class ShotLineService
                     LockService::unlock('binance:lock:shot_new');
                     return ['result' => true, 'message' => 'have unfinished buy order'];
                }
-               $quantity = Redis::get('binance:buy:quantity_'.$pair.'new'); //买卖单数量
-               if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
 
                // 无卖单或卖单完成 且 无买单或买单完成或买单取消 则下买单
                $noSell = is_null($sellNumber) || isset($sellStatus['status']) && $sellStatus['status'] == 'FILLED';
@@ -595,16 +609,15 @@ class ShotLineService
                     if (!is_null($buyNumber) && $buyStatus['side'] == 'BUY' && $buyStatus['status'] == 'FILLED') {
                          $sellDepthNumber = Redis::get('binance:sell:offset_'.$pair); //卖单偏移值(净利润)
                          if (is_null($sellDepthNumber)) $sellDepthNumber = 0.2;
-                         $chengben = Redis::get('binance:buy:price_'.$pair.'new');
                          $sellPrice = $chengben * (1+0.001) + $sellDepthNumber; // 第一年0.1手续费
                          $sellPrice = number_format($sellPrice, 2, '.', '');
                          // 下止损单
                          $stopLossOffset = Redis::get('binance:sell:stop_loss_offset_'.$pair.'new');
                          if (is_null($stopLossOffset)) $stopLossOffset = 0;
-                         $type = "STOP_LOSS"; // Set the type STOP_LOSS (market) or STOP_LOSS_LIMIT, and TAKE_PROFIT (market) or TAKE_PROFIT_LIMIT
-                         $stopPrice = $chengben - $stopLossOffset; // Sell immediately if price goes below 0.4 btc
-                         $res = $api->sell($ticker, $quantity, $sellPrice, $type, ["stopPrice"=>$stopPrice]);
-//                         $res = $api->sell($ticker, $quantity, $sellPrice);
+//                         $type = "STOP_LOSS"; // Set the type STOP_LOSS (market) or STOP_LOSS_LIMIT, and TAKE_PROFIT (market) or TAKE_PROFIT_LIMIT
+//                         $stopPrice = $chengben - $stopLossOffset; // Sell immediately if price goes below 0.4 btc
+//                         $res = $api->sell($ticker, $quantity, $sellPrice, $type, ["stopPrice"=>$stopPrice]);
+                         $res = $api->sell($ticker, $quantity, $sellPrice);
                          if (isset($res['msg'])) {
                               LockService::unlock('binance:lock:shot_new');
                               return ['result' => false, 'message' => $res['msg']];
