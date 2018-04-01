@@ -100,6 +100,30 @@ class ConsoleService
           // 运行总开关
           $open = Redis::get('switch_new_'.$pair);
           if (is_null($open) || $open == 2) return false;
+          // 每天日志开关
+          $everyDaySwitch = Redis::get('switch_new_log'.$pair);
+          if (time() > strtotime(date('Y-m-d 23:56:00')) && $everyDaySwitch == 2) {
+               // 记账
+               $api = app('Binance');
+               $wallet = $api->balances();
+               $coin1 = $wallet[explode('_',$pair)[0]];
+               $coin2 = $wallet[explode('_',$pair)[1]];
+               \DB::table('everyday_profit')->insert(
+                    [
+                         'uid' => 1, //zwp
+                         'coin_name' => explode('_',$pair)[0],
+                         'coin_avail' => $coin1['available'],
+                         'coin_onorder' => $coin1['onOrder'],
+                         'usdt_avail' => $coin2['available'],
+                         'usdt_onorder' => $coin2['onOrder'],
+                         'trade_no' => strtotime(date('Y-m-d 00:00:00'))
+                    ]
+               );
+               Redis::set('switch_new_log'.$pair, 1);
+          }
+          if ($everyDaySwitch == 2) {
+               return null;
+          }
           // 如果挂单都成交或者到了指定时间
 //        $runTimeLimit = Redis::get(self::GTC_RUN_TIME_LIMIT_KEY);
 //        if (!$openOrderExist || is_null($runTimeLimit)) {
@@ -107,5 +131,25 @@ class ConsoleService
 //        if (!$res['result']) {
           Log::debug('new:'.$res['message']);
 //        }
+     }
+
+     public static function KlineToChange($period = '1m')
+     {
+          $api = app('Binance');
+          $ticks = $api->candlesticks("ETHUSDT", $period); //ethusdt
+          // 记录价格趋势
+//         $end = end($ticks);
+//         $change = $end['close'] - $end['open'];
+          $endSecond = array_slice($ticks,-2,1);
+          $change = $endSecond[0]['close'] - $endSecond[0]['open'];
+          if ($change > 0) {
+               Redis::set('binance:price_change', 1);  //1-涨 2-跌
+               return 1;
+          } elseif ($change < 0) {
+               Redis::set('binance:price_change', 2);  //1-涨 2-跌
+               return 2;
+          } else {
+               return null;
+          }
      }
 }

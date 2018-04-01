@@ -12,10 +12,10 @@
                     <span>Binance策略</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/eth_usdt?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT</a></li>
+                    <li><a href="/eth_usdt?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT (无脑买单)</a></li>
                 </ul>
                 <ul class="treeview-menu">
-                    <li><a href="/eth_usdt_new?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT (new)</a></li>
+                    <li><a href="/eth_usdt_new?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT (追涨杀跌)</a></li>
                 </ul>
             </li>
 

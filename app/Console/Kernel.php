@@ -68,7 +68,7 @@ class Kernel extends ConsoleKernel
          })->cron('* * * * *');
 
          $schedule->call(function () {
-              ConsoleKernel::KlineToChange('1m');
+              ConsoleService::KlineToChange('1m');
          })->cron('* * * * *');
 
 //        $limitTime = Redis::get('binance:sell:cancel_limit_time');
@@ -77,24 +77,6 @@ class Kernel extends ConsoleKernel
 //                ShotLineService::cancelSellOrder('ETH_USDT');
 //        })->cron('0 */'.$limitTime.' * * *');
         // everyTenMinutes everyThirtyMinutes hourly
-    }
-
-    public static function KlineToChange($period = '1m')
-    {
-         $api = app('Binance');
-         $ticks = $api->candlesticks("ETHUSDT", $period); //ethusdt
-         // 记录价格趋势
-         $end = end($ticks);
-         $change = $end['close'] - $end['open'];
-         if ($change > 0) {
-              Redis::set('binance:price_change', 1);  //1-涨 2-跌
-              return 1;
-         } elseif ($change < 0) {
-              Redis::set('binance:price_change', 2);  //1-涨 2-跌
-              return 2;
-         } else {
-              return null;
-         }
     }
 
 }

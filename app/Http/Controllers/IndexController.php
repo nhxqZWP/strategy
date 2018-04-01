@@ -13,14 +13,12 @@ class IndexController extends Controller
 
         $api = app('Binance');
         $wallet = $api->balances();
-         $lastPrice = $api->prices()['ETHUSDT'];
-         var_dump($lastPrice);
 
         // test show k线图
          $ticks = $api->candlesticks("ETHUSDT", "1m");
          $endSecond = array_slice($ticks,-2,1);
-         dd($endSecond);
-         dd($endSecond['close'] - $endSecond['open']);
+         dd($endSecond[0]);
+         dd($endSecond[0]['close'] - $endSecond[0]['open']);
 //         $data = [];
 //         foreach ($ticks as $k => $t) {
 //              $k = date('Y-m-d H:i:s', $k/1000);

@@ -511,16 +511,23 @@ class ShotLineService
 
      public static function BinanceShotLineNew($pair)
      {
-          ini_set('memory_limit', '500M'); //内存限制
-          set_time_limit(0);
-          $api = app('Binance');
-          $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
-
           // 加锁
           $isLock = LockService::lock('binance:lock:shot_new', 10, 1);
           if (!$isLock) {
                return ['result' => true, 'message' => 'trigger lock new'];
           }
+
+          // 每天11:40到12:00暂停脚本记账
+          if (time() > strtotime(date('Y-m-d 23:40:00')) && time() < strtotime(date('Y-m-d 23:55:00'))) {
+               Redis::set('switch_new_log'.$pair, 2);
+               return ['result' => true, 'message' => 'make everyday log ' . date('Y-m-d m:i:s')];
+          }
+
+          ini_set('memory_limit', '500M'); //内存限制
+          set_time_limit(0);
+          $api = app('Binance');
+          $ticker = implode('', explode('_', $pair));  // pair - ETH_USDT  ticker - EHTUSDT
+
 
           $sellNumber = Redis::get('binance:sell:number_'.$pair.'new');
           $sellStatus = $api->orderStatus($ticker, $sellNumber);
@@ -557,9 +564,11 @@ class ShotLineService
                $noBuy = is_null($buyNumber) || (isset($buyStatus['status'])&&($buyStatus['status'] == 'FILLED' || $buyStatus['status'] == 'CANCELED'));
                if ($noSell && $noBuy && (is_null($buyDeal) || $buyDeal == 2)) {
                     // 追涨
-//                    if () {
-//
-//                    }
+                    $change = Redis::get('binance:price_change');
+                    if ($change == 2) {  //1-涨 2-跌
+                         LockService::unlock('binance:lock:shot_new');
+                         return ['result' => true, 'message' => 'price down now'];
+                    }
                     $depth = $api->depth($ticker);
                     $depthBids = array_keys($depth['bids']);
                     $buyDepthNumber = Redis::get('binance:buy:offset_'.$pair.'new'); //买单偏移数
