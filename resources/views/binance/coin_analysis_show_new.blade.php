@@ -37,7 +37,7 @@
                                     <td> 止损偏移:</td>
                                     <td>
                                         <form action="/stop_loss?plat=binance" method="post">
-                                            <input type="text" name="stop_loss" value="{{$stopLoss}}" size="10">s
+                                            <input type="text" name="stop_loss" value="{{$stopLoss}}" size="10">usdt
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
@@ -50,10 +50,10 @@
                                             <input type="submit" name="提交">
                                         </form>
                                     </td>
-                                    <td> 每笔净利润:(用BNB第一年50%)</td>
+                                    <td> 单价净利润:(用BNB第一年50%)</td>
                                     <td>
                                         <form action="/binance/profit" method="post">
-                                            <input type="text" name="profit" value="{{$profit}}" size="10">
+                                            <input type="text" name="profit" value="{{$profit}}" size="10">usdt
                                             <input type="hidden" name="pair" value="{{$pair}}">
                                             <input type="submit" name="提交">
                                         </form>
