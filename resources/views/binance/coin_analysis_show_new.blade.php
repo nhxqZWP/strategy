@@ -91,7 +91,7 @@
                                         {{--</td>--}}
                                         {{--<td>--}}
                                             {{--<input type="text" name="group4_coin1" value="{{$param['4coin']}}">ETH--}}
-                                            {{--<input type="hidden" name="pair" value="ETH_USDT">--}}
+                                            <input type="hidden" name="pair" value="ETH_USDT">
                                         {{--</td>--}}
                                     </tr>
                                     <tr>
