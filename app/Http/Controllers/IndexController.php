@@ -15,17 +15,17 @@ class IndexController extends Controller
         $wallet = $api->balances();
 
         // test show k线图
-         $ticks = $api->candlesticks("ETHUSDT", "1m");
-         $endSecond = array_slice($ticks,-2,1);
-         dd($endSecond[0]);
-         dd($endSecond[0]['close'] - $endSecond[0]['open']);
+//         $ticks = $api->candlesticks("ETHUSDT", "1m");
+//         $endSecond = array_slice($ticks,-2,1);
+//         dd($endSecond[0]);
+//         dd($endSecond[0]['close'] - $endSecond[0]['open']);
 //         $data = [];
 //         foreach ($ticks as $k => $t) {
 //              $k = date('Y-m-d H:i:s', $k/1000);
 //              $data[$k] = $t;
 //         }
-         krsort($ticks);
-         dd($ticks);
+//         krsort($ticks);
+//         dd($ticks);
 
         $coin1 = $wallet[explode('_',$pair)[0]];
         $coin2 = $wallet[explode('_',$pair)[1]];
