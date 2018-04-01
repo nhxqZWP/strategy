@@ -534,21 +534,21 @@ class ShotLineService
           if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
           if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
                // 有未完成卖单 先判断止损
-               $lastPrice = $api->prices()[$ticker];
-               if ($lastPrice < $chengben) {
-                    // 取消卖单
-                    $api->cancel($ticker, $sellNumber);
-                    sleep(1);
-                    // 下市价单
-                    $order = $api->marketSell($ticker, $quantity);
-                    if (isset($order['msg'])) {
-                         LockService::unlock('binance:lock:shot_new');
-                         return ['result' => false, 'message' => $order['msg']];
-                    }
-                    Redis::set('binance:buy:mark_'.$pair.'new', 2); //标记对应买单处理了
-                    LockService::unlock('binance:lock:shot_new');
-                    return ['result' => true, 'message' => 'make market sell order to stop loss'];
-               }
+//               $lastPrice = $api->prices()[$ticker];
+//               if ($lastPrice < $chengben) {
+//                    // 取消卖单
+//                    $api->cancel($ticker, $sellNumber);
+//                    sleep(1);
+//                    // 下市价单
+//                    $order = $api->marketSell($ticker, $quantity);
+//                    if (isset($order['msg'])) {
+//                         LockService::unlock('binance:lock:shot_new');
+//                         return ['result' => false, 'message' => $order['msg']];
+//                    }
+//                    Redis::set('binance:buy:mark_'.$pair.'new', 2); //标记对应买单处理了
+//                    LockService::unlock('binance:lock:shot_new');
+//                    return ['result' => true, 'message' => 'make market sell order to stop loss'];
+//               }
                LockService::unlock('binance:lock:shot_new');
                return ['result' => true, 'message' => 'have unfinished sell order'];
           } else {
