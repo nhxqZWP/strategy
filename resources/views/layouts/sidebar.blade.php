@@ -12,6 +12,9 @@
                     <span>Binance策略</span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="/btc_usdt?pair=BTC_USDT"><i class="fa fa-circle-o"></i>BTC/USDT (五日线法)</a></li>
+                </ul>
+                <ul class="treeview-menu">
                     <li><a href="/eth_usdt?pair=ETH_USDT"><i class="fa fa-circle-o"></i>ETH/USDT (无脑买单)</a></li>
                 </ul>
                 <ul class="treeview-menu">

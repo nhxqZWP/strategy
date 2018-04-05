@@ -32,6 +32,7 @@ Route::group(['middleware'=>'rbac'], function() {
     Route::get('/gtc_usdt', 'StrategyController@getGateIoOneCoin');
     Route::get('/eth_usdt', 'StrategyController@getBinanceOneCoin');
     Route::get('/eth_usdt_new', 'StrategyController@getBinanceOneCoinNew');
+    Route::get('/btc_usdt', 'StrategyController@getBinanceOneCoinNew2');
 });
 
 Route::get('test', 'TestController@testLeeksReaper');

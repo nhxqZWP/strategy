@@ -534,6 +534,7 @@ class ShotLineService
           if (is_null($quantity)) $quantity = 0.02;  // 买卖1个eth
           if (!is_null($sellNumber) && $sellStatus['side'] == 'SELL' && ($sellStatus['status'] == 'NEW' || $sellStatus['status'] == 'PARTIALLY_FILLED')) {
                // 有未完成卖单 先判断止损
+               // todo 如果价格趋势是下跌则开始止损
 //               $lastPrice = $api->prices()[$ticker];
 //               if ($lastPrice < $chengben) {
 //                    // 取消卖单
