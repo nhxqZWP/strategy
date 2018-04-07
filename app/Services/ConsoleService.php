@@ -133,10 +133,10 @@ class ConsoleService
 //        }
      }
 
-     public static function KlineToChange($period = '1m')
+     public static function KlineToChange($period = '1m', $ticker = 'BTCUSDT')
      {
           $api = app('Binance');
-          $ticks = $api->candlesticks("ETHUSDT", $period); //ethusdt
+          $ticks = $api->candlesticks($ticker, $period); //ethusdt
           // 记录价格趋势
 //         $end = end($ticks);
 //         $change = $end['close'] - $end['open'];
@@ -151,5 +151,18 @@ class ConsoleService
           } else {
                return null;
           }
+     }
+
+     public static function KlineMA5($ticker = 'BTCUSDT')
+     {
+          $api = app('Binance');
+          $ticks = $api->candlesticks($ticker, "5m");
+          $ends = array_slice($ticks,-6,5);
+          $sumFive = 0;
+          foreach ($ends as $e) {
+               $sumFive += $e['close'];
+          }
+          $fiveAvePrice = $sumFive / 5;
+          Redis::set('klineMa5m_'.$ticker, $fiveAvePrice);
      }
 }

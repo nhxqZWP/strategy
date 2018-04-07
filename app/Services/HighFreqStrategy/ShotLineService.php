@@ -638,4 +638,23 @@ class ShotLineService
           LockService::unlock('binance:lock:shot_new');
           return ['result' => false, 'message' => 'have no action'];
      }
+
+     public static function BinanceMa5m($ticker = 'BTCUSDT', $period= '5m')
+     {
+          $api = app('Binance');
+          $ticks = $api->candlesticks($ticker, $period);
+          $endSecond = array_slice($ticks,-2,1);
+          $closePrice = $endSecond[0]['close'];
+
+          $change = $endSecond[0]['close'] - $endSecond[0]['open'];
+          if ($change > 0) {
+               Redis::set('binance:price_change', 1);  //1-涨 2-跌
+               return 1;
+          } elseif ($change < 0) {
+               Redis::set('binance:price_change', 2);  //1-涨 2-跌
+               return 2;
+          } else {
+               return null;
+          }
+     }
 }

@@ -59,16 +59,23 @@ class Kernel extends ConsoleKernel
 //                sleep(2);
 //            }
 //        })->cron('* * * * *');
+//
+//         $schedule->call(function () {
+//              for ($i = 0; $i < 10; $i++) {
+//                   ConsoleService::runShotLineNew();
+//                   sleep(5);
+//              }
+//         })->cron('* * * * *');
+
+//         $schedule->call(function () {
+//              ConsoleService::KlineToChange('1m', 'ETHUSDT');
+//         })->cron('* * * * *');
 
          $schedule->call(function () {
               for ($i = 0; $i < 10; $i++) {
-                   ConsoleService::runShotLineNew();
+                   ConsoleService::KlineMA5('BTCUSDT');
                    sleep(5);
               }
-         })->cron('* * * * *');
-
-         $schedule->call(function () {
-              ConsoleService::KlineToChange('1m');
          })->cron('* * * * *');
 
 //        $limitTime = Redis::get('binance:sell:cancel_limit_time');
