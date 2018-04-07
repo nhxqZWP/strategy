@@ -5,10 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StrategyController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StrategyController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change beforePath="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" afterPath="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +18,7 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
+            <state relative-caret-position="538">
               <caret line="34" column="69" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="69" />
               <folding>
                 <element signature="e#7#392#0#PHP" expanded="true" />
@@ -34,18 +30,8 @@
       <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="50" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IndexController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="27" column="22" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="27" selection-end-column="22" />
+            <state relative-caret-position="255">
+              <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -54,8 +40,8 @@
       <file leaf-file-name="StrategyController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="322" column="25" lean-forward="true" selection-start-line="322" selection-start-column="25" selection-end-line="322" selection-end-column="25" />
+            <state relative-caret-position="343">
+              <caret line="321" column="26" lean-forward="false" selection-start-line="321" selection-start-column="26" selection-end-line="321" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -127,8 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>morris</find>
-      <find>line-chart</find>
       <find>Line Chart</find>
       <find>balance</find>
       <find>balances</find>
@@ -157,6 +141,8 @@
       <find>updateRunStatusNew</find>
       <find>timelimit</find>
       <find>sell</find>
+      <find>getBinanceOneCoinNew2</find>
+      <find>btc_usdt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -199,8 +185,8 @@
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StrategyController.php" />
       </list>
     </option>
@@ -548,7 +534,7 @@
       <workItem from="1519820899806" duration="45000" />
       <workItem from="1522500097368" duration="24232000" />
       <workItem from="1522683574804" duration="919000" />
-      <workItem from="1522915596529" duration="1242000" />
+      <workItem from="1522915596529" duration="2706000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1519263242632</created>
@@ -858,11 +844,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522599485015</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="测试五日线法">
+      <created>1522946889283</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1522946889283</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136773000" />
+    <option name="totallyTimeSpent" value="138237000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -896,7 +889,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first commit" />
     <MESSAGE value="添加控制" />
     <MESSAGE value="使用币安" />
     <MESSAGE value="使用币安2组数据" />
@@ -921,7 +913,8 @@
     <MESSAGE value="new strategy final" />
     <MESSAGE value="自己判断止损" />
     <MESSAGE value="暂时取消止损" />
-    <option name="LAST_COMMIT_MESSAGE" value="暂时取消止损" />
+    <MESSAGE value="测试五日线法" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试五日线法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1292,24 +1285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="34" column="69" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="69" />
-          <folding>
-            <element signature="e#7#392#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="50" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/HighFreqStrategy/ShotLineService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -1351,6 +1326,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="34" column="69" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="69" />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -1361,8 +1354,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="322" column="25" lean-forward="true" selection-start-line="322" selection-start-column="25" selection-end-line="322" selection-end-column="25" />
+        <state relative-caret-position="343">
+          <caret line="321" column="26" lean-forward="false" selection-start-line="321" selection-start-column="26" selection-end-line="321" selection-end-column="26" />
           <folding />
         </state>
       </provider>

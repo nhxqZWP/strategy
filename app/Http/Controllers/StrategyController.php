@@ -298,6 +298,7 @@ class StrategyController extends Controller
           return view('binance.coin_analysis_show_new', $data);
      }
 
+     // 五日线法
      public function getBinanceOneCoinNew2(Request $request)
      {
           $pair = $request->get('pair');
@@ -312,7 +313,14 @@ class StrategyController extends Controller
 
           // test show k线图
           $ticks = $api->candlesticks($ticker, "5m");
-          $endSecond = array_slice($ticks,-2,1);
+          $ends = array_slice($ticks,-6,5);
+          $sumFive = 0;
+          foreach ($ends as $e) {
+               $sumFive += $e['close'];
+          }
+          $fiveAvePrice = $sumFive / 5;
+          dd($fiveAvePrice);
+
 //          dd($endSecond[0]);
 //          dd($endSecond[0]['close'] - $endSecond[0]['open']);
           $data = [];
