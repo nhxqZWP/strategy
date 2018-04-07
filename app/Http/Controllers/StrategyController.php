@@ -316,6 +316,7 @@ class StrategyController extends Controller
           $ends = array_slice($ticks,-6,5);
           $sumFive = 0;
           foreach ($ends as $e) {
+               var_dump($e);
                $sumFive += $e['close'];
           }
           $fiveAvePrice = $sumFive / 5;

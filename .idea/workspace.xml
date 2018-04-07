@@ -40,8 +40,8 @@
       <file leaf-file-name="StrategyController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="321" column="26" lean-forward="false" selection-start-line="321" selection-start-column="26" selection-end-line="321" selection-end-column="26" />
+            <state relative-caret-position="227">
+              <caret line="316" column="23" lean-forward="true" selection-start-line="316" selection-start-column="23" selection-end-line="316" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -534,7 +534,7 @@
       <workItem from="1519820899806" duration="45000" />
       <workItem from="1522500097368" duration="24232000" />
       <workItem from="1522683574804" duration="919000" />
-      <workItem from="1522915596529" duration="2706000" />
+      <workItem from="1522915596529" duration="2922000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1519263242632</created>
@@ -851,11 +851,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522946889283</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="测试五日线法">
+      <created>1523109556469</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1523109556469</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138237000" />
+    <option name="totallyTimeSpent" value="138453000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1354,8 +1361,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StrategyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="321" column="26" lean-forward="false" selection-start-line="321" selection-start-column="26" selection-end-line="321" selection-end-column="26" />
+        <state relative-caret-position="227">
+          <caret line="316" column="23" lean-forward="true" selection-start-line="316" selection-start-column="23" selection-end-line="316" selection-end-column="23" />
           <folding />
         </state>
       </provider>
