@@ -4,7 +4,6 @@
     <list default="true" id="7835dce0-5645-45db-9c3a-e858deab460f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/depth.blade.php" afterPath="$PROJECT_DIR$/resources/views/depth.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,13 +30,12 @@
       <file leaf-file-name="depth.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/depth.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
               <folding>
                 <element signature="e#1141#1175#0#HTML" expanded="true" />
-                <element signature="e#1303#1337#0#HTML" expanded="true" />
-                <marker date="1525108342518" expanded="true" signature="9:25" ph="..." />
-                <marker date="1525108342518" expanded="true" signature="37:51" ph="..." />
+                <marker date="1525108436595" expanded="true" signature="9:25" ph="..." />
+                <marker date="1525108436595" expanded="true" signature="37:51" ph="..." />
               </folding>
             </state>
           </provider>
@@ -555,14 +553,7 @@
       <workItem from="1522500097368" duration="24232000" />
       <workItem from="1522683574804" duration="919000" />
       <workItem from="1522915596529" duration="6104000" />
-      <workItem from="1524973195787" duration="18895000" />
-    </task>
-    <task id="LOCAL-00003" summary="添加控制">
-      <created>1519316318320</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1519316318320</updated>
+      <workItem from="1524973195787" duration="18969000" />
     </task>
     <task id="LOCAL-00004" summary="使用币安">
       <created>1519466653153</created>
@@ -900,11 +891,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525108058598</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="添加火币api调用">
+      <created>1525108350786</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1525108350786</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160530000" />
+    <option name="totallyTimeSpent" value="160604000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1466,13 +1464,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/depth.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
           <folding>
             <element signature="e#1141#1175#0#HTML" expanded="true" />
-            <element signature="e#1303#1337#0#HTML" expanded="true" />
-            <marker date="1525108342518" expanded="true" signature="9:25" ph="..." />
-            <marker date="1525108342518" expanded="true" signature="37:51" ph="..." />
+            <marker date="1525108436595" expanded="true" signature="9:25" ph="..." />
+            <marker date="1525108436595" expanded="true" signature="37:51" ph="..." />
           </folding>
         </state>
       </provider>

@@ -29,11 +29,11 @@
                     {{--<div class="box-footer clearfix">--}}
 
                     {{--</div>--}}
-                    <div id="pop_div" style="width:100%; height: 500px;"></div>
+                    <div id="pop_div" style="width:100%; height: 800px;"></div>
                      <?= $lava->render('ColumnChart', 'Finances', 'pop_div') ?>
 
-                    <div id="pop_div2" style="width:100%; height: 500px;"></div>
-                     <?= $lava2->render('ColumnChart', 'Finances2', 'pop_div2') ?>
+                    {{--<div id="pop_div2" style="width:100%; height: 500px;"></div>--}}
+<!--                     --><?//= $lava2->render('ColumnChart', 'Finances2', 'pop_div2') ?>
             {{--</section>--}}
         </div>
 
