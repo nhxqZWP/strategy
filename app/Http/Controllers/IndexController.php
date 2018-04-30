@@ -37,4 +37,9 @@ class IndexController extends Controller
         ];
         return view('welcome', $data);
     }
+
+    public function getIndexNew()
+    {
+         return view('welcome_new');
+    }
 }

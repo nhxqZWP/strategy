@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        ini_set('memory_limit', '500M'); //内存限制
+//        ini_set('memory_limit', '500M'); //内存限制
 //        $schedule->call(function () {
 //            for ($i = 0; $i < 11; $i++) {
 //                ConsoleService::runShotLine();
@@ -71,12 +71,12 @@ class Kernel extends ConsoleKernel
 //              ConsoleService::KlineToChange('1m', 'ETHUSDT');
 //         })->cron('* * * * *');
 
-         $schedule->call(function () {
-              for ($i = 0; $i < 10; $i++) {
-                   ConsoleService::KlineMA5('BTCUSDT');
-                   sleep(5);
-              }
-         })->cron('* * * * *');
+//         $schedule->call(function () {
+//              for ($i = 0; $i < 10; $i++) {
+//                   ConsoleService::KlineMA5('BTCUSDT');
+//                   sleep(5);
+//              }
+//         })->cron('* * * * *');
 
 //        $limitTime = Redis::get('binance:sell:cancel_limit_time');
 //        if (is_null($limitTime)) $limitTime = 6;

@@ -9,6 +9,16 @@
             <li class="treeview active">
                 <a href="#">
                     <i class="fa fa-table"></i>
+                    <span>火币策略</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/huobi/depth"><i class="fa fa-circle-o"></i>深度图</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview active">
+                <a href="#">
+                    <i class="fa fa-table"></i>
                     <span>Binance策略</span>
                 </a>
                 <ul class="treeview-menu">

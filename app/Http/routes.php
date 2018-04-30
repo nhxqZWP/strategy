@@ -15,7 +15,12 @@ require __DIR__ . '/routes-rbac.php';
 require __DIR__ . '/routes-common.php';
 
 Route::group(['middleware'=>'rbac'], function() {
-    Route::get('/', 'IndexController@getIndex');
+//    Route::get('/', 'IndexController@getIndex');
+    Route::get('/', 'IndexController@getIndexNew');
+
+    //huobi
+     Route::get('/huobi/depth', 'HuobiStrategyController@getHuobiDepth');
+
     Route::get('/switch', 'StrategyController@updateRunStatus');
     Route::get('/switch_new', 'StrategyController@updateRunStatusNew');
     Route::get('/cancel/order', 'StrategyController@cancelOneOrder');
