@@ -39,11 +39,11 @@ class HuobiStrategyController extends Controller
 
           foreach ($asks as $k => $a) {
                $stocksTableAsk->addRow([
-                    $asks[$k][0], $bids[$k][1]
+                    $asks[$k][0], $asks[$k][1]
                ]);
           }
 
-          $lava2->ColumnChart('Finances', $stocksTableAsk, [
+          $lava2->ColumnChart('Finances2', $stocksTableAsk, [
                'title' => 'market depth (asks)',
                'titleTextStyle' => [
                     'color'    => '#eb6b2c',
