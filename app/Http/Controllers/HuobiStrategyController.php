@@ -10,7 +10,7 @@ class HuobiStrategyController extends Controller
      public function getHuobiDepth()
      {
           $huoBi = app('HuoBi');
-          $depths = $huoBi->get_market_depth('btcusdt', 'step0');
+          $depths = $huoBi->get_market_depth('btcusdt', 'step2');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
 
