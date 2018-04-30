@@ -17,7 +17,7 @@ class HuobiService {
      protected $SECRET_KEY = '';
 
      function __construct($accountId = '', $accessKey = '', $secretKey = '') {
-          date_default_timezone_set("Etc/GMT+0");
+          date_default_timezone_set("UTC");
           $this->ACCOUNT_ID = $accountId;
           $this->ACCESS_KEY = $accessKey;
           $this->SECRET_KEY = $secretKey;
