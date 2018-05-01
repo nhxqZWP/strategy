@@ -42,25 +42,32 @@ class HuobiStrategyController extends Controller
                ],
           ]);
           //ask
-          $lava2 = new Lavacharts; // See note below for Laravel
-          $stocksTableAsk = $lava2->DataTable();  // Lava::DataTable() if using Laravel
-          $stocksTableAsk->addNumberColumn('Price')
-               ->addNumberColumn('Amount');
+//          $lava2 = new Lavacharts; // See note below for Laravel
+//          $stocksTableAsk = $lava2->DataTable();  // Lava::DataTable() if using Laravel
+//          $stocksTableAsk->addNumberColumn('Price')
+//               ->addNumberColumn('Amount');
+//
+//          foreach ($asks as $k => $a) {
+//               $stocksTableAsk->addRow([
+//                    $asks[$k][0], $asks[$k][1]
+//               ]);
+//          }
+//
+//          $lava2->ColumnChart('Finances2', $stocksTableAsk, [
+//               'title' => 'market depth (asks)',
+//               'titleTextStyle' => [
+//                    'color'    => '#eb6b2c',
+//                    'fontSize' => 14
+//               ],
+//          ]);
 
-          foreach ($asks as $k => $a) {
-               $stocksTableAsk->addRow([
-                    $asks[$k][0], $asks[$k][1]
-               ]);
-          }
+          return view('depth', ['lava' => $lava, /*'lava2' => $lava2, */'buyOne' => $buyPartOne, 'buyTwo' => $buyPartTwo]);
+     }
 
-          $lava2->ColumnChart('Finances2', $stocksTableAsk, [
-               'title' => 'market depth (asks)',
-               'titleTextStyle' => [
-                    'color'    => '#eb6b2c',
-                    'fontSize' => 14
-               ],
-          ]);
-
-          return view('depth', ['lava' => $lava, 'lava2' => $lava2, 'buyOne' => $buyPartOne, 'buyTwo' => $buyPartTwo]);
+     public function getAllDepth()
+     {
+          $huoBi = app('HuoBi');
+          $depths = $huoBi->get_common_symbols();
+          dd($depths);
      }
 }

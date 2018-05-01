@@ -20,6 +20,7 @@ Route::group(['middleware'=>'rbac'], function() {
 
     //huobi
      Route::get('/huobi/depth', 'HuobiStrategyController@getHuobiDepth');
+     Route::get('/huobi/depth/all', 'HuobiStrategyController@getAllDepth');
 
     Route::get('/switch', 'StrategyController@updateRunStatus');
     Route::get('/switch_new', 'StrategyController@updateRunStatusNew');
