@@ -25,10 +25,10 @@
                     <table class="table table-bordered table-hover table-striped">
                         <tbody>
                         <tr>
-                            <th>交易对</th>
-                            <th>买单高位占比</th>
-                            <th>卖单低位占比</th>
-                            <th>买单与卖单量差比</th>
+                            <th scope="col">交易对</th>
+                            <th scope="col">买单高位占比</th>
+                            <th scope="col">卖单低位占比</th>
+                            <th scope="col">买单与卖单量差比</th>
                         </tr>
                         @foreach($analysis as $item)
                             <tr>
