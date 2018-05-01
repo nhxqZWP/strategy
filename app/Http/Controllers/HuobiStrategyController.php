@@ -10,7 +10,7 @@ class HuobiStrategyController extends Controller
      public function getHuobiDepth()
      {
           $huoBi = app('HuoBi');
-          $depths = $huoBi->get_market_depth('btcusdt', 'step2');
+          $depths = $huoBi->get_market_depth('btcusdt', 'step1');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
 
@@ -19,10 +19,18 @@ class HuobiStrategyController extends Controller
           $stocksTableBuy = $lava->DataTable();  // Lava::DataTable() if using Laravel
           $stocksTableBuy->addNumberColumn('Price')
                ->addNumberColumn('Amount');
+          $buyCount = intval(count($bids)/2);
+          $buyPartOne = 0;
+          $buyPartTwo = 0;
           foreach ($bids as $k => $b) {
                $stocksTableBuy->addRow([
                     $bids[$k][0], $bids[$k][1]
                ]);
+               if ($k < $buyCount) {
+                    $buyPartOne += $bids[$k][1];
+               } else {
+                    $buyPartTwo += $bids[$k][1];
+               }
           }
           $lava->ColumnChart('Finances', $stocksTableBuy, [
                'title' => 'market depth (bids)',
@@ -51,6 +59,6 @@ class HuobiStrategyController extends Controller
                ],
           ]);
 
-          return view('depth', ['lava' => $lava, 'lava2' => $lava2]);
+          return view('depth', ['lava' => $lava, 'lava2' => $lava2, 'buyOne' => $buyPartOne, 'buyTwo' => $buyPartTwo]);
      }
 }
