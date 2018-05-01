@@ -69,10 +69,15 @@ class HuobiStrategyController extends Controller
           $huoBi = app('HuoBi');
           $depths = $huoBi->get_common_symbols();
           $data = $depths->data;
+          $tickers = [];
+          $analysis = [];
           foreach ($data as $d) {
                $d = (array)$d;
-               echo $d['base-currency'].$d['quote-currency'].'<br/>';
+               array_push($tickers, $d['base-currency'].$d['quote-currency']);
           }
-          dd(1);
+          foreach ($tickers as $ticker) {
+               $analysis[] = TradePlatform\HuobiService::getDepthAnalysis($ticker);
+          }
+          dd($analysis);
      }
 }

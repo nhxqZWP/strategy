@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7835dce0-5645-45db-9c3a-e858deab460f" name="Default" comment="深度统计">
+    <list default="true" id="7835dce0-5645-45db-9c3a-e858deab460f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
+      <change beforePath="$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php" afterPath="$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -30,8 +29,8 @@
       <file leaf-file-name="HuobiStrategyController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="58" column="45" lean-forward="false" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+            <state relative-caret-position="635">
+              <caret line="80" column="22" lean-forward="false" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
               <folding>
                 <element signature="e#40#71#0#PHP" expanded="true" />
               </folding>
@@ -39,11 +38,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="HuobiService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="674">
+              <caret line="450" column="0" lean-forward="false" selection-start-line="450" selection-start-column="0" selection-end-line="450" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+            <state relative-caret-position="180">
+              <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -62,16 +71,6 @@
                 <marker date="1525179301263" expanded="true" signature="1425:1432" ph="..." />
                 <marker date="1525179301263" expanded="true" signature="1442:1471" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HuobiService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="32" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -193,11 +192,11 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
-        <option value="$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php" />
         <option value="$PROJECT_DIR$/resources/views/depth.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php" />
       </list>
     </option>
   </component>
@@ -578,35 +577,7 @@
       <workItem from="1522500097368" duration="24232000" />
       <workItem from="1522683574804" duration="919000" />
       <workItem from="1522915596529" duration="6104000" />
-      <workItem from="1524973195787" duration="21739000" />
-    </task>
-    <task id="LOCAL-00012" summary="larger mem limit">
-      <created>1519547609908</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1519547609908</updated>
-    </task>
-    <task id="LOCAL-00013" summary="lock service">
-      <created>1519548695808</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1519548695808</updated>
-    </task>
-    <task id="LOCAL-00014" summary="for times">
-      <created>1519550262032</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1519550262032</updated>
-    </task>
-    <task id="LOCAL-00015" summary="init all debug">
-      <created>1519552517434</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1519552517434</updated>
+      <workItem from="1524973195787" duration="23691000" />
     </task>
     <task id="LOCAL-00016" summary="add balance analysis">
       <created>1519555714047</created>
@@ -923,11 +894,39 @@
       <option name="project" value="LOCAL" />
       <updated>1525179675272</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="深度统计">
+      <created>1525180488341</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1525180488341</updated>
+    </task>
+    <task id="LOCAL-00062" summary="深度统计">
+      <created>1525180834520</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1525180834520</updated>
+    </task>
+    <task id="LOCAL-00063" summary="深度统计">
+      <created>1525180885761</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1525180885761</updated>
+    </task>
+    <task id="LOCAL-00064" summary="深度统计">
+      <created>1525181327483</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1525181327483</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163374000" />
+    <option name="totallyTimeSpent" value="165326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1435,10 +1434,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="32" />
+        <state relative-caret-position="248">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <marker date="1525105705384" expanded="true" signature="976:981" ph="..." />
+            <marker date="1525105705384" expanded="true" signature="1344:1360" ph="..." />
+            <marker date="1525105705384" expanded="true" signature="1437:1454" ph="..." />
+            <marker date="1525105705384" expanded="true" signature="1558:1572" ph="..." />
+            <marker date="1525105705384" expanded="true" signature="1655:1671" ph="..." />
+            <marker date="1525105705384" expanded="true" signature="1716:1730" ph="..." />
+            <marker date="1525105705384" expanded="true" signature="2564:2568" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -1458,42 +1481,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/HuobiService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding>
-            <marker date="1525105705384" expanded="true" signature="976:981" ph="..." />
-            <marker date="1525105705384" expanded="true" signature="1344:1360" ph="..." />
-            <marker date="1525105705384" expanded="true" signature="1437:1454" ph="..." />
-            <marker date="1525105705384" expanded="true" signature="1558:1572" ph="..." />
-            <marker date="1525105705384" expanded="true" signature="1655:1671" ph="..." />
-            <marker date="1525105705384" expanded="true" signature="1716:1730" ph="..." />
-            <marker date="1525105705384" expanded="true" signature="2564:2568" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="674">
+          <caret line="450" column="0" lean-forward="false" selection-start-line="450" selection-start-column="0" selection-end-line="450" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HuobiStrategyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="58" column="45" lean-forward="false" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+        <state relative-caret-position="635">
+          <caret line="80" column="22" lean-forward="false" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
           <folding>
             <element signature="e#40#71#0#PHP" expanded="true" />
           </folding>

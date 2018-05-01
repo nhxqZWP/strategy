@@ -409,4 +409,44 @@ class HuobiService {
           curl_close($ch);
           return $output;
      }
+
+     public static function getDepthAnalysis($ticker)
+     {
+          $huoBi = app('HuoBi');
+          $depths = $huoBi->get_market_depth($ticker, 'step0');
+          $bids = $depths->tick->bids;
+          $asks = $depths->tick->asks;
+          $buyCount = intval(count($bids)/2);
+          $askCount = intval(count($asks)/2);
+          $buyPartHigh = 0;
+          $buyPartLow = 0;
+          foreach ($bids as $k => $b) {
+               if ($k < $buyCount) {
+                    $buyPartHigh += $bids[$k][1];
+               } else {
+                    $buyPartLow += $bids[$k][1];
+               }
+          }
+          $askPartHigh = 0;
+          $askPartLow = 0;
+          foreach ($asks as $k => $a) {
+               if ($k < $askCount) {
+                    $askPartLow += $asks[$k][1];
+               } else {
+                    $askPartHigh += $asks[$k][1];
+               }
+          }
+          $buyAna = $buyPartHigh / ($buyPartHigh + $buyPartLow);
+          $askAna = $askPartLow / ($askPartLow + $askPartHigh);
+          if (($buyPartHigh + $buyPartLow) >= ($askPartHigh - $askPartLow)) {
+               $buyDelAsk = ($buyPartHigh + $buyPartLow - $askPartHigh - $askPartLow) / ($askPartHigh + $askPartLow);
+          } else {
+               $buyDelAsk = - ($askPartHigh + $askPartLow - $buyPartHigh - $buyPartLow) / ($buyPartHigh + $buyPartLow);
+          }
+          return [
+               'buy' => $buyAna,
+               'ask' => $askAna,
+               'del' => $buyDelAsk
+          ];
+     }
 }
