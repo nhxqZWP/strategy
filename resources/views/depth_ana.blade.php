@@ -33,7 +33,7 @@
                         @foreach($analysis as $item)
                             <tr>
                                 <td>{{$item['ticker']}}</td>
-                                <td @if(intval($item['buy']*100) > 80)style="color:#902b2b" @endif>{{$item['buy']*100}}%</td>
+                                <td @if(intval($item['buy']*100) > 80)style="color: #9f191f" @endif>{{$item['buy']*100}}%</td>
                                 <td>{{$item['ask']*100}}%</td>
                                 <td>{{$item['del']*100}}%</td>
                             </tr>
