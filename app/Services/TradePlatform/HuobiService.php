@@ -7,6 +7,8 @@ namespace App\Services\TradePlatform;
 //define('ACCESS_KEY', ''); // 你的ACCESS_KEY
 //define('SECRET_KEY', ''); // 你的SECRET_KEY
 
+use Illuminate\Support\Facades\Redis;
+
 class HuobiService {
 //     private $api = 'api.huobi.pro';
      private $api = 'api.huobipro.com';
@@ -449,5 +451,22 @@ class HuobiService {
                'ask' => $askAna,
                'del' => $buyDelAsk
           ];
+     }
+
+     public static function putAllDepth()
+     {
+          $huoBi = app('HuoBi');
+          $depths = $huoBi->get_common_symbols();
+          $data = $depths->data;
+          $tickers = [];
+          $analysis = [];
+          foreach ($data as $d) {
+               $d = (array)$d;
+               array_push($tickers, $d['base-currency'].$d['quote-currency']);
+          }
+          foreach ($tickers as $ticker) {
+               $analysis[] = self::getDepthAnalysis($ticker);
+          }
+          Redis::set('huobi_all_depth', json_encode($analysis));
      }
 }

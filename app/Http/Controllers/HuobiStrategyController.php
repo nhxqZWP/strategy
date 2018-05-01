@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\TradePlatform;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use Khill\Lavacharts\Lavacharts;
 
 class HuobiStrategyController extends Controller
@@ -66,18 +67,24 @@ class HuobiStrategyController extends Controller
 
      public function getAllDepth()
      {
-          $huoBi = app('HuoBi');
-          $depths = $huoBi->get_common_symbols();
-          $data = $depths->data;
-          $tickers = [];
-          $analysis = [];
-          foreach ($data as $d) {
-               $d = (array)$d;
-               array_push($tickers, $d['base-currency'].$d['quote-currency']);
+          $anaRedis = Redis::get('huobi_all_depth');
+          if (is_null($anaRedis)) {
+               $huoBi = app('HuoBi');
+               $depths = $huoBi->get_common_symbols();
+               $data = $depths->data;
+               $tickers = [];
+               $analysis = [];
+               foreach ($data as $d) {
+                    $d = (array)$d;
+                    array_push($tickers, $d['base-currency'].$d['quote-currency']);
+               }
+               foreach ($tickers as $ticker) {
+                    $analysis[] = TradePlatform\HuobiService::getDepthAnalysis($ticker);
+               }
+          } else {
+               $analysis = json_encode($anaRedis, true);
           }
-          foreach ($tickers as $ticker) {
-               $analysis[] = TradePlatform\HuobiService::getDepthAnalysis($ticker);
-          }
-          dd($analysis);
+
+          return view('depth_ana', ['analysis' => $analysis]);
      }
 }

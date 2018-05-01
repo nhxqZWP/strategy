@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Services\ConsoleService;
 use App\Services\HighFreqStrategy\ShotLineService;
+use App\Services\TradePlatform\HuobiService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Log;
@@ -84,6 +85,11 @@ class Kernel extends ConsoleKernel
 //                ShotLineService::cancelSellOrder('ETH_USDT');
 //        })->cron('0 */'.$limitTime.' * * *');
         // everyTenMinutes everyThirtyMinutes hourly
+
+         $schedule->call(function () {
+              HuobiService::putAllDepth();
+              Log::debug('run depth analysis');
+         })->cron('* * * * *');
     }
 
 }
