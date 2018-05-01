@@ -82,7 +82,7 @@ class HuobiStrategyController extends Controller
                     $analysis[] = TradePlatform\HuobiService::getDepthAnalysis($ticker);
                }
           } else {
-               $analysis = json_encode($anaRedis, true);
+               $analysis = json_decode($anaRedis, true);
           }
 
           return view('depth_ana', ['analysis' => $analysis]);
