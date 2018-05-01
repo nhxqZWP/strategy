@@ -84,7 +84,7 @@ class HuobiStrategyController extends Controller
           } else {
                $analysis = json_decode($anaRedis, true);
           }
-          array_multisort(array_column($analysis,'buy'),SORT_DESC,$analysis);
+          array_multisort(array_column($analysis,'del'),SORT_DESC,$analysis);
           return view('depth_ana', ['analysis' => $analysis]);
      }
 }
