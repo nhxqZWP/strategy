@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Request;
 use App\Services\TradePlatform;
 use Khill\Lavacharts\Lavacharts;
 
 class HuobiStrategyController extends Controller
 {
-     public function getHuobiDepth()
+     public function getHuobiDepth(Request $request)
      {
+          $ticker = $request->get('ticker', 'btcusdt');
           $huoBi = app('HuoBi');
-          $depths = $huoBi->get_market_depth('btcusdt', 'step0');
+          $depths = $huoBi->get_market_depth($ticker, 'step0');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
 
