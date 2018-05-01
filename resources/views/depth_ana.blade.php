@@ -31,7 +31,7 @@
                             <th>买单与卖单量差比</th>
                         </tr>
                         @foreach($analysis as $item)
-                            <tr @if(intval($item['buy']*100) > 80)style="background-color: #902b2b" @endif>
+                            <tr @if(intval($item['buy']*100) > 80)style="background-color: #f9f2f4" @endif>
                                 <td>{{$item['ticker']}}</td>
                                 <td>{{$item['buy']*100}}%</td>
                                 <td>{{$item['ask']*100}}%</td>
