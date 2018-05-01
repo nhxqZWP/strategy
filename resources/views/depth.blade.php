@@ -33,7 +33,7 @@
                         </div>
                     {{--</div>--}}
                     <div class="box-footer clearfix">
-                        买单前半量:{{$buyOne}}  后半量:{{$buyTwo}} 后半占比 {{$buyTwo/($buyOne+$buyTwo)*100}}%
+                        买单高量:{{$buyOne}}  低量:{{$buyTwo}} 高量占比 {{$buyOne/($buyOne+$buyTwo)*100}}%
                     </div>
 
             </section>
