@@ -13,7 +13,7 @@ class HuobiStrategyController extends Controller
           $depths = $huoBi->get_market_depth('btcusdt', 'step1');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
-
+dd($depths);
           //buy
           $lava = new Lavacharts; // See note below for Laravel
           $stocksTableBuy = $lava->DataTable();  // Lava::DataTable() if using Laravel
