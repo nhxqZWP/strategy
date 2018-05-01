@@ -462,6 +462,7 @@ class HuobiService {
           $analysis = [];
           foreach ($data as $d) {
                $d = (array)$d;
+               if ($d['quote-currency'] == 'eth') continue;
                array_push($tickers, $d['base-currency'].$d['quote-currency']);
           }
           foreach ($tickers as $ticker) {
