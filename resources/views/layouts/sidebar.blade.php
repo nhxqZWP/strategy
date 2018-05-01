@@ -12,7 +12,7 @@
                     <span>火币策略</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/huobi/depth"><i class="fa fa-circle-o"></i>深度图</a></li>
+                    <li><a href="/huobi/depth?ticker=btcusdt"><i class="fa fa-circle-o"></i>深度图</a></li>
                     <li><a href="/huobi/depth/all"><i class="fa fa-circle-o"></i>深度图分析</a></li>
                 </ul>
             </li>
