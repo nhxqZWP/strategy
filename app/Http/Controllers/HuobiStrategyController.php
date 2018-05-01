@@ -70,7 +70,8 @@ class HuobiStrategyController extends Controller
           $depths = $huoBi->get_common_symbols();
           $data = $depths->data;
           foreach ($data as $d) {
-               echo $d->base-currency.$d->quote-currency.'<br/>';
+               $d = (array)$d;
+               echo $d['base-currency'].$d['quote-currency'].'<br/>';
           }
           dd(1);
      }
