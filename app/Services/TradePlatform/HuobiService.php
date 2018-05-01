@@ -444,6 +444,7 @@ class HuobiService {
                $buyDelAsk = - ($askPartHigh + $askPartLow - $buyPartHigh - $buyPartLow) / ($buyPartHigh + $buyPartLow);
           }
           return [
+               'ticker' => $ticker,
                'buy' => $buyAna,
                'ask' => $askAna,
                'del' => $buyDelAsk
