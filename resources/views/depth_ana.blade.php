@@ -22,7 +22,7 @@
                         {{--<h5 class="box-title">五日线法 测试日志</h5>--}}
                     {{--</div>--}}
                 <div class="dataTables_wrapper form-inline dt-bootstrap">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-hover">
                         <tbody>
                         <tr>
                             <th>交易对</th>
@@ -31,7 +31,7 @@
                             <th>买单与卖单量差比</th>
                         </tr>
                         @foreach($analysis as $item)
-                            <tr>
+                            <tr @if(intval($item['buy']*100) > 80)style="background-color: #902b2b" @endif>
                                 <td>{{$item['ticker']}}</td>
                                 <td>{{$item['buy']*100}}%</td>
                                 <td>{{$item['ask']*100}}%</td>
