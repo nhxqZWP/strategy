@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Request;
 use App\Services\TradePlatform;
+use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 
 class HuobiStrategyController extends Controller
