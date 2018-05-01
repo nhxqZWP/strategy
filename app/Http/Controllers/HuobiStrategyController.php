@@ -68,6 +68,10 @@ class HuobiStrategyController extends Controller
      {
           $huoBi = app('HuoBi');
           $depths = $huoBi->get_common_symbols();
-          dd($depths);
+          $data = $depths->data;
+          foreach ($data as $d) {
+               echo $d->base-currency.$d->quote-currency.'<br/>';
+          }
+          dd(1);
      }
 }
