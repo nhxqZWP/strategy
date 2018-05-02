@@ -22,16 +22,16 @@ class HuobiStrategyController extends Controller
           $max = 0;
           $min = (double)0.0;
           foreach ($bids as $k => $b1) {
-               if ($bids[$k][0] > $max) $max = $bids[$k][0];
-               if ($bids[$k][0] < $min) $min = $bids[$k][0];
+               if ((double)$bids[$k][0] > $max) $max = (double)$bids[$k][0];
+               if ((double)$bids[$k][0] < $min) $min = (double)$bids[$k][0];
           }
           foreach ($bids as $k => $b2) {
-               if ($bids[$k][0] >= $max) continue;
-               if ($bids[$k][0] <= $min) continue;
+               if ((double)$bids[$k][0] >= (double)$max) continue;
+               if ((double)$bids[$k][0] <= (double)$min) continue;
                $bidsDeal[$k] = $b2;
           }
-          var_dump($max);
-          var_dump($min);
+          var_dump((double)$max);
+          var_dump((double)$min);
           dd($bidsDeal);
 
           //buy
