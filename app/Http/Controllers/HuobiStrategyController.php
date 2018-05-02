@@ -30,6 +30,8 @@ class HuobiStrategyController extends Controller
                if ($bids[$k][0] <= $min) continue;
                $bidsDeal[$k] = $b2;
           }
+          var_dump($max);
+          var_dump($min);
           dd($bidsDeal);
 
           //buy
