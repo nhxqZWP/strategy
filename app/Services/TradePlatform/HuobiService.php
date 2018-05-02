@@ -418,11 +418,14 @@ class HuobiService {
           $depths = $huoBi->get_market_depth($ticker, 'step0');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
+          $buyCountAll = count($bids);
+          $askCountAll = count($asks);
           $buyCount = intval(count($bids)/2);
           $askCount = intval(count($asks)/2);
           $buyPartHigh = 0;
           $buyPartLow = 0;
           foreach ($bids as $k => $b) {
+               if ($k > $buyCountAll) continue;
                if ($k < $buyCount) {
                     $buyPartHigh += $bids[$k][1];
                } else {
@@ -432,6 +435,7 @@ class HuobiService {
           $askPartHigh = 0;
           $askPartLow = 0;
           foreach ($asks as $k => $a) {
+               if ($k > $askCountAll) continue;
                if ($k < $askCount) {
                     $askPartLow += $asks[$k][1];
                } else {
