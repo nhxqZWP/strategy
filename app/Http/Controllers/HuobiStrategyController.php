@@ -13,7 +13,7 @@ class HuobiStrategyController extends Controller
      {
           $ticker = $request->get('ticker', 'btcusdt');
           $huoBi = app('HuoBi');
-          $depths = $huoBi->get_market_depth($ticker, 'step0');
+          $depths = $huoBi->get_market_depth($ticker, 'step1');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
 dd($depths);
