@@ -13,43 +13,39 @@ class HuobiStrategyController extends Controller
      {
           $ticker = $request->get('ticker', 'btcusdt');
           $huoBi = app('HuoBi');
-          $depths = $huoBi->get_market_depth($ticker, 'step5');
+          $depths = $huoBi->get_market_depth($ticker, 'step0');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
-dd($depths);
-          // 去掉最高价和最低
-          $bidsDeal = [];
-          $max = 0;
-          $min = (double)0.0;
-          foreach ($bids as $k => $b1) {
-               if ((double)$bids[$k][0] > $max) $max = (double)$bids[$k][0];
-               if ((double)$bids[$k][0] < $min) $min = (double)$bids[$k][0];
-          }
-          foreach ($bids as $k => $b2) {
-               if ((double)$bids[$k][0] >= (double)$max) continue;
-               if ((double)$bids[$k][0] <= (double)$min) continue;
-               $bidsDeal[$k] = $b2;
-          }
-          var_dump((double)$max);
-          var_dump((double)$min);
-          dd($bidsDeal);
+
+          // 去掉最大量
+//          $bidsDeal = [];
+//          $max = 0;
+//          foreach ($bids as $k => $b1) {
+//               if ($bids[$k][1] > $max) $max = $bids[$k][1];
+//          }
+//          foreach ($bids as $k => $b2) {
+//               if ($bids[$k][1] >= $max) continue;
+//               $bidsDeal[$k] = $b2;
+//          }
 
           //buy
           $lava = new Lavacharts; // See note below for Laravel
           $stocksTableBuy = $lava->DataTable();  // Lava::DataTable() if using Laravel
           $stocksTableBuy->addNumberColumn('Price')
                ->addNumberColumn('Amount');
-          $buyCount = intval(count($bidsDeal)/2);
+          $buyCountAll = count($bids);
+          $buyCount = intval(count($bids)/2);
           $buyPartOne = 0;
           $buyPartTwo = 0;
-          foreach ($bidsDeal as $k => $b) {
+          foreach ($bids as $k => $b) {
+               if ($k > $buyCountAll - 10) continue;
                $stocksTableBuy->addRow([
-                    $bidsDeal[$k][0], $bidsDeal[$k][1]
+                    $bids[$k][0], $bids[$k][1]
                ]);
                if ($k < $buyCount) {
-                    $buyPartOne += $bidsDeal[$k][1];
+                    $buyPartOne += $bids[$k][1];
                } else {
-                    $buyPartTwo += $bidsDeal[$k][1];
+                    $buyPartTwo += $bids[$k][1];
                }
           }
           $lava->ColumnChart('Finances', $stocksTableBuy, [
