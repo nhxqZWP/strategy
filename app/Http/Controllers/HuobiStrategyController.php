@@ -16,7 +16,7 @@ class HuobiStrategyController extends Controller
           $depths = $huoBi->get_market_depth($ticker, 'step0');
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
-dd($depths);
+
           // 去掉最高价和最低
           $bidsDeal = [];
           $max = 0;
@@ -30,6 +30,7 @@ dd($depths);
                if ($bids[$k][0] <= $min) continue;
                $bidsDeal[$k] = $b2;
           }
+          dd($bidsDeal);
 
           //buy
           $lava = new Lavacharts; // See note below for Laravel
