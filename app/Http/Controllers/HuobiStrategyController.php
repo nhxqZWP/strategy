@@ -20,7 +20,7 @@ class HuobiStrategyController extends Controller
           // 去掉最高价和最低
           $bidsDeal = [];
           $max = 0;
-          $min = 0;
+          $min = (double)0.0;
           foreach ($bids as $k => $b1) {
                if ($bids[$k][0] > $max) $max = $bids[$k][0];
                if ($bids[$k][0] < $min) $min = $bids[$k][0];
