@@ -17,14 +17,17 @@ class HuobiStrategyController extends Controller
           $bids = $depths->tick->bids;
           $asks = $depths->tick->asks;
 
-          // 去掉最高价
+          // 去掉最高价和最低
           $bidsDeal = [];
           $max = 0;
+          $min = 0;
           foreach ($bids as $k => $b1) {
                if ($bids[$k][0] > $max) $max = $bids[$k][0];
+               if ($bids[$k][0] < $min) $min = $bids[$k][0];
           }
           foreach ($bids as $k => $b2) {
                if ($bids[$k][0] >= $max) continue;
+               if ($bids[$k][0] <= $min) continue;
                $bidsDeal[$k] = $b2;
           }
 
