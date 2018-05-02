@@ -26,15 +26,21 @@
                         <tbody>
                         <tr>
                             <th scope="col">交易对</th>
-                            <th scope="col">买单高位占比</th>
-                            <th scope="col">卖单低位占比</th>
-                            <th scope="col">买单与卖单量差比</th>
+                            <th scope="col">买单高位占比
+                                <a class="glyphicon glyphicon-sort-by-order-alt btn btn-default btn-xs" href="/huobi/depth/all?type=1" role="button"></a>
+                            </th>
+                            <th scope="col">卖单低位占比
+                                <a class="glyphicon glyphicon-sort-by-order btn btn-default btn-xs" href="/huobi/depth/all?type=2" role="button"></a>
+                            </th>
+                            <th scope="col">买单与卖单量差比
+                                <a class="glyphicon glyphicon-sort-by-order-alt btn btn-default btn-xs" href="/huobi/depth/all?type=3" role="button"></a>
+                            </th>
                         </tr>
                         @foreach($analysis as $item)
                             <tr>
                                 <td>{{$item['ticker']}}</td>
                                 <td @if(intval($item['buy']*100) > 80)style="color: #9f191f" @endif>{{$item['buy']*100}}%</td>
-                                <td>{{$item['ask']*100}}%</td>
+                                <td @if(intval($item['ask']*100) < 25)style="color: #9f191f" @endif>{{$item['ask']*100}}%</td>
                                 <td @if(intval($item['del']*100) > 10000)style="color: #9f191f" @endif>{{$item['del']*100}}%</td>
                             </tr>
                         @endforeach

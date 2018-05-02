@@ -65,8 +65,9 @@ class HuobiStrategyController extends Controller
           return view('depth', ['lava' => $lava, /*'lava2' => $lava2, */'buyOne' => $buyPartOne, 'buyTwo' => $buyPartTwo]);
      }
 
-     public function getAllDepth()
+     public function getAllDepth(Request $request)
      {
+          $type = $request->get('type', 1);
           $anaRedis = Redis::get('huobi_all_depth');
           if (is_null($anaRedis)) {
                $huoBi = app('HuoBi');
@@ -84,7 +85,17 @@ class HuobiStrategyController extends Controller
           } else {
                $analysis = json_decode($anaRedis, true);
           }
-          array_multisort(array_column($analysis,'buy'),SORT_DESC,$analysis);
+          switch ($ticker) {
+               case 1 : array_multisort(array_column($analysis,'buy'),SORT_DESC,$analysis);
+                    break;
+               case 2 : array_multisort(array_column($analysis,'ask'),SORT_ASC,$analysis);
+                    break;
+               case 3 : array_multisort(array_column($analysis,'del'),SORT_DESC,$analysis);
+                    break;
+               default : array_multisort(array_column($analysis,'buy'),SORT_DESC,$analysis);
+                    break;
+          }
+
           return view('depth_ana', ['analysis' => $analysis]);
      }
 }
