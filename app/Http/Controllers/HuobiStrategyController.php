@@ -18,34 +18,34 @@ class HuobiStrategyController extends Controller
           $asks = $depths->tick->asks;
 
           // 去掉最大量
-//          $bidsDeal = [];
-//          $max = 0;
-//          foreach ($bids as $k => $b1) {
-//               if ($bids[$k][1] > $max) $max = $bids[$k][1];
-//          }
-//          foreach ($bids as $k => $b2) {
-//               if ($bids[$k][1] >= $max) continue;
-//               $bidsDeal[$k] = $b2;
-//          }
+          $bidsDeal = [];
+          $max = 0;
+          foreach ($bids as $k => $b1) {
+               if ($bids[$k][1] > $max) $max = $bids[$k][1];
+          }
+          foreach ($bids as $k => $b2) {
+               if ($bids[$k][1] >= $max) continue;
+               $bidsDeal[$k] = $b2;
+          }
 
           //buy
           $lava = new Lavacharts; // See note below for Laravel
           $stocksTableBuy = $lava->DataTable();  // Lava::DataTable() if using Laravel
           $stocksTableBuy->addNumberColumn('Price')
                ->addNumberColumn('Amount');
-          $buyCountAll = count($bids);
-          $buyCount = intval(count($bids)/2);
+          $buyCountAll = count($bidsDeal);
+          $buyCount = intval(count($bidsDeal)/2);
           $buyPartOne = 0;
           $buyPartTwo = 0;
-          foreach ($bids as $k => $b) {
+          foreach ($bidsDeal as $k => $b) {
                if ($k > $buyCountAll - 10) continue;
                $stocksTableBuy->addRow([
-                    $bids[$k][0], $bids[$k][1]
+                    $bidsDeal[$k][0], $bidsDeal[$k][1]
                ]);
                if ($k < $buyCount) {
-                    $buyPartOne += $bids[$k][1];
+                    $buyPartOne += $bidsDeal[$k][1];
                } else {
-                    $buyPartTwo += $bids[$k][1];
+                    $buyPartTwo += $bidsDeal[$k][1];
                }
           }
           $lava->ColumnChart('Finances', $stocksTableBuy, [
