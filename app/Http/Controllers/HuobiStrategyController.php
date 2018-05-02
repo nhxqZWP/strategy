@@ -85,7 +85,7 @@ class HuobiStrategyController extends Controller
           } else {
                $analysis = json_decode($anaRedis, true);
           }
-          switch ($ticker) {
+          switch ($type) {
                case 1 : array_multisort(array_column($analysis,'buy'),SORT_DESC,$analysis);
                     break;
                case 2 : array_multisort(array_column($analysis,'ask'),SORT_ASC,$analysis);
