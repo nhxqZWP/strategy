@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TradePlatform;
+use Binance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Khill\Lavacharts\Lavacharts;
@@ -83,7 +84,10 @@ class BinanceStrategyController extends Controller
           $type = $request->get('type', 1);
           $anaRedis = Redis::get('binance_all_depth');
           if (is_null($anaRedis)) {
-               $api = app('Binance');
+//               $api = app('Binance');
+               $key = config('platform.binance.key');
+               $secret = config('platform.binance.secret');
+               $api = new Binance($key,$secret);
                $depths = $api->exchangeInfo();
                dd($depths);
                $data = $depths->data;
