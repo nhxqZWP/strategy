@@ -4,7 +4,6 @@
     <list default="true" id="7835dce0-5645-45db-9c3a-e858deab460f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,45 +25,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
               <folding>
                 <element signature="e#33#77#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="php-binance-api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/php-binance-api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="63" column="20" lean-forward="false" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BinanceService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/BinanceService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BinanceStrategyController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-              <folding>
-                <element signature="e#40#71#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,9 +40,43 @@
       <file leaf-file-name="binance-api-single.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/examples/single/binance-api-single.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="32" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+            <state relative-caret-position="123">
+              <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+              <folding>
+                <element signature="e#6#54#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="php-binance-api.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/php-binance-api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13524">
+              <caret line="819" column="21" lean-forward="false" selection-start-line="819" selection-start-column="21" selection-end-line="819" selection-end-column="21" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinanceService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/BinanceService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinanceStrategyController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+              <folding>
+                <element signature="e#40#71#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cancel</find>
       <find>cancelOneOrder</find>
       <find>candlesticks</find>
       <find>getGateIoOneCoin</find>
@@ -138,6 +138,7 @@
       <find>ColumnChart</find>
       <find>render(</find>
       <find>Etc/GMT+0</find>
+      <find>excha</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -189,9 +190,9 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php" />
         <option value="$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/examples/single/binance-api-single.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php" />
       </list>
     </option>
   </component>
@@ -625,14 +626,7 @@
       <workItem from="1522683574804" duration="919000" />
       <workItem from="1522915596529" duration="6104000" />
       <workItem from="1524973195787" duration="31937000" />
-      <workItem from="1525527572350" duration="4618000" />
-    </task>
-    <task id="LOCAL-00054" summary="添加火币api调用">
-      <created>1525108506636</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1525108506636</updated>
+      <workItem from="1525527572350" duration="5170000" />
     </task>
     <task id="LOCAL-00055" summary="深度统计">
       <created>1525178880401</created>
@@ -970,11 +964,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525533422902</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="binance深度统计">
+      <created>1525534330115</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1525534330116</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178190000" />
+    <option name="totallyTimeSpent" value="178742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1354,28 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/depth_ana.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding>
-            <marker date="1525256978965" expanded="true" signature="9:25" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="37:51" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="1830:1848" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="1921:1936" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="1984:2013" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2046:2062" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2111:2140" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2173:2189" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2238:2270" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2303:2319" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2573:2580" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2589:2596" ph="..." />
-            <marker date="1525256978965" expanded="true" signature="2606:2635" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_5.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -1424,17 +1403,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/examples/single/binance-api-single.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/depth_ana.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="32" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="123">
+          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+          <folding>
+            <marker date="1525256978965" expanded="true" signature="9:25" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="37:51" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="1830:1848" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="1921:1936" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="1984:2013" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2046:2062" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2111:2140" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2173:2189" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2238:2270" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2303:2319" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2573:2580" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2589:2596" ph="..." />
+            <marker date="1525256978965" expanded="true" signature="2606:2635" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+          <folding>
+            <element signature="e#40#71#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/TradePlatform/BinanceService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="110">
           <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding />
         </state>
@@ -1442,28 +1445,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/php-binance-api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="63" column="20" lean-forward="false" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+        <state relative-caret-position="13524">
+          <caret line="819" column="21" lean-forward="false" selection-start-line="819" selection-start-column="21" selection-end-line="819" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/jaggedsoft/php-binance-api/examples/single/binance-api-single.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding>
+            <element signature="e#6#54#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding>
             <element signature="e#33#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BinanceStrategyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#71#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
