@@ -83,8 +83,8 @@ class BinanceStrategyController extends Controller
           $type = $request->get('type', 1);
           $anaRedis = Redis::get('binance_all_depth');
           if (is_null($anaRedis)) {
-               $huoBi = app('Binance');
-               $depths = $huoBi->exchangeInfo();
+               $api = app('Binance');
+               $depths = $api->time();
                dd($depths);
                $data = $depths->data;
                $tickers = [];
