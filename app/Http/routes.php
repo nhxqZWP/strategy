@@ -18,9 +18,12 @@ Route::group(['middleware'=>'rbac'], function() {
 //    Route::get('/', 'IndexController@getIndex');
     Route::get('/', 'IndexController@getIndexNew');
 
-    //huobi
+     //huobi
      Route::get('/huobi/depth', 'HuobiStrategyController@getHuobiDepth');
      Route::get('/huobi/depth/all', 'HuobiStrategyController@getAllDepth');
+
+     //binance
+     Route::get('/binance/depth/all', 'BinanceStrategyController@getAllDepth');
 
     Route::get('/switch', 'StrategyController@updateRunStatus');
     Route::get('/switch_new', 'StrategyController@updateRunStatusNew');

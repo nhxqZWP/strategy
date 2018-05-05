@@ -23,6 +23,9 @@
                     <span>Binance策略</span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="/binance/depth/all"><i class="fa fa-circle-o"></i>深度图分析</a></li>
+                </ul>
+                <ul class="treeview-menu">
                     <li><a href="/btc_usdt?pair=BTC_USDT"><i class="fa fa-circle-o"></i>BTC/USDT (五日线法)</a></li>
                 </ul>
                 <ul class="treeview-menu">
