@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Services\TradePlatform\HuobiService;
-use Binance;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton("Binance", function(){
             $key = config('platform.binance.key');
             $secret = config('platform.binance.secret');
-            $api = new Binance\API($key,$secret);
+            $api = \Binance\API($key,$secret);
             return $api;
         });
         $this->app->singleton("HuoBi", function(){

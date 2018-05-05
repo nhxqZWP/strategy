@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "357e15d8c78c692ea0259713f76adee6",
+    "content-hash": "d8421fe39d8d6a52b3d311a7fdf17ede",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -442,16 +442,16 @@
         },
         {
             "name": "jaggedsoft/php-binance-api",
-            "version": "dev-master",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaggedsoft/php-binance-api.git",
-                "reference": "5c10299fd1f17d53ef41ea57ba59688322ed15d8"
+                "reference": "53e048a742edcf5cc6038f18472a9dbb299aefbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/jaggedsoft/php-binance-api/5c10299fd1f17d53ef41ea57ba59688322ed15d8.zip",
-                "reference": "5c10299fd1f17d53ef41ea57ba59688322ed15d8",
+                "url": "https://files.phpcomposer.com/files/jaggedsoft/php-binance-api/53e048a742edcf5cc6038f18472a9dbb299aefbe.zip",
+                "reference": "53e048a742edcf5cc6038f18472a9dbb299aefbe",
                 "shasum": ""
             },
             "require": {
@@ -481,7 +481,7 @@
                 "cryptocurrency",
                 "websocket"
             ],
-            "time": "2018-05-03T21:20:57+00:00"
+            "time": "2018-05-03T17:33:56+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -4187,9 +4187,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jaggedsoft/php-binance-api": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
